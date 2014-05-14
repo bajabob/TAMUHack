@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	
+	<title>tamuHack</title>
+	
+	<meta name="title" content="tamuHack" />
+	<meta name="author" content="tamuHack | tamuhack.com" />
+	<meta name="keywords" content="tamuhack, hackathon, hackathons, student organization, computer science" />
+	<meta name="description" content="Est. 2014" />
+
+	<link rel="stylesheet" href="<?php echo $this->baseUrl("/styles/index/style.css"); ?>" type="text/css" media="screen" />
+	
+	<!-- jQuery library (served from Google) -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<!-- bxSlider Javascript file -->
+	<script src="/js/jquery.bxslider.js"></script>
+	<!-- bxSlider CSS file -->
+	<link href="/styles/index/jquery.bxslider.css" rel="stylesheet" />
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.bxslider').bxSlider({
+				auto:true
+			});
+		});
+	</script>
+	
+</head>
+		
+<body> 	
+ 
+<div class="top_nav">
+    <div class="top_nav_inner">
+        <div class="top_nav_menu_logo"></div>
+        <ul class="top_nav_menu">
+        	<?php 
+        		$uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); 
+        		
+        		/**
+					below
+					-to define a linked controller address, insert an array element in the form,
+						array("controllerName/node", "LINK-TITLE")
+					-to define an external address insert a link in the place of the controller and
+						include "http". 
+        		 */
+        		$uris = array(
+							array("/", 				"HOME"), 
+							array("index/news",		"NEWS"),
+							array("index/about", 	"ABOUT"),
+							array("index/contact", 	"CONTACT")
+						);
+        		foreach ($uris as $item):
+        	?>
+        		<li<?php if($uri === $this->baseUrl($item[0])): ?> class="current"<?php endif;?>>
+        			<?php if(strpos($item[0],'http://') !== false){?>
+        				<a href="<?php echo $item[0]; ?>" target="_blank" ><?php echo $item[1]; ?></a>
+        			<?php }else{?>
+        				<a href="<?php echo $this->baseUrl($item[0]); ?>"><?php echo $item[1]; ?></a>
+        			<?php }?>
+        		</li>
+        	<?php endforeach; ?>
+
+        </ul>
+    </div>
+</div>
+ 
+<div class="content"> 
+	<?php echo $this->layout()->content; ?>
+</div> 
+
+<div class="bottom_nav">
+    <div class="bottom_nav_inner">
+    	<div class="bottom_nav_menu_logo"></div>
+    	<ul class="bottom_nav_menu">
+        	<?php 
+        		array_push($uris, 	array("index/legal",	"LEGAL")
+							);
+					
+        		
+        		foreach ($uris as $item):
+        	?>
+        		<li>
+        			<a href="<?php echo $this->baseUrl($item[0]); ?>"><?php echo $item[1]; ?></a>
+        		</li>
+        	<?php endforeach; ?>
+        </ul>
+        <div class="bottom_copyright">tamuHack&copy; <?php echo date("Y"); ?></div> 
+    </div>   
+</div>
+ 
+</body> 
+</html> 

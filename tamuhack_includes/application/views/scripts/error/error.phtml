@@ -1,0 +1,63 @@
+<div id="header" class="png"> 
+		<div id="headerimg"> 
+			<ul class="pages png head_overlay"> 
+				<!-- <li class="page_item page-item-2"><a href="http://roboconn.com" title="Sample Page">About Us</a></li>   -->
+			</ul> 
+		</div> 	
+	</div> 
+	 
+	<div id="main" class="png"> 
+	<table> 
+		<tr> 
+			<td id="content" class="narrowcolumn" rowspan="2"> 
+		 
+				<ul class="inline-widgets"> </ul> 
+		 
+				<div class="post" id="post-1"> 
+				
+					
+					<div class="colmask rightmenu">
+						<div class="colleft">
+							<div class="col1">
+								<!-- left Column 1 start -->
+				  				<h1>An error occurred</h1>
+				  				<h2><?php echo $this->message ?></h2>
+								<p>The page you requested is no longer available or never existed. Please use the site's navigation to find what you are looking for. 
+								
+				  				<?php if (isset($this->exception)): ?>
+				
+				  				<h3>Exception information:</h3>
+				  				<p>
+				      				<b>Message:</b> <?php echo $this->exception->getMessage() ?>
+				  				</p>
+				
+				  				<h3>Stack trace:</h3>
+				  				<pre><?php echo $this->exception->getTraceAsString() ?>
+				  				</pre>
+				
+				  				<h3>Request Parameters:</h3>
+				  				<pre><?php echo var_export($this->request->getParams(), true) ?>
+				  				</pre>
+				  				<?php endif ?>
+								<!-- Column 1 end -->
+							</div>
+							<div class="col2">
+								<!-- right Column 2 start -->
+								<!-- Column 2 end -->
+							</div>
+						</div>
+					</div> 
+					<p class="clear"> </p> 
+				</div> 
+		 
+		 
+				<div class="navigation"> 
+					<div class="alignleft"></div> 
+					<div class="alignright"></div> 
+				</div> 
+				<ul class="inline-widgets"> </ul> 
+			</td> 
+		</tr> 
+	</table> 
+	</div><!--  --> 
+	

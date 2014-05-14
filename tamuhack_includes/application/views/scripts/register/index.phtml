@@ -1,0 +1,50 @@
+<h1>Benefits of Membership</h1>
+<p>
+	<ul>
+		<li>Find teammates for hackathons</li>
+		<li>Network with the top tech companies</li>
+		<li>Get a cool tamuHack shirt</li>
+		<li>Get a chance to win cool prizes within tamuHack</li>
+		<li>Attend tamuHack mini-lectures on source control, API's and other technologies</li>
+	</ul>
+</p>
+
+<h1>Join Today!</h1>
+<p class="center" >Open to current students of Texas A&M University (College Station)</p>
+<p class="center">Please fill out the form to join, we will dispatch an email to you for confirmation.</p>
+
+<form class="form_register" action="<?php echo $this->baseUrl("/register"); ?>" method="post">
+	<label>
+		<span>*First Name:</span>
+		<?php if(isset($this->fields["name_first_error"])):?>
+		<span class="error"><?php echo $this->fields["name_first_error"];?></span>
+		<?php endif; ?>
+		<input type="text" name="name_first" value="<?php echo $this->fields["name_first"];?>">
+	</label>
+	<label>
+		<span>*Last Name:</span>
+		<?php if(isset($this->fields["name_last_error"])):?>
+		<span class="error"><?php echo $this->fields["name_last_error"];?></span>
+		<?php endif; ?>
+		<input type="text" name="name_last" value="<?php echo $this->fields["name_last"];?>">
+	</label>
+	<label>
+		<span>*TAMU Email:</span>
+		<?php if(isset($this->fields["email_error"])):?>
+		<span class="error"><?php echo $this->fields["email_error"];?></span>
+		<?php endif; ?>
+		<input type="text" name="email" value="<?php echo $this->fields["email"];?>">
+	</label>
+	<label>
+		<span>*Password:</span>
+		<?php if(isset($this->fields["password_error"])):?>
+		<span class="error"><?php echo $this->fields["password_error"];?></span>
+		<?php endif; ?>
+		<input type="password" name="password">
+	</label>
+	<br>
+	<input type="submit" value="Submit">
+	<label>
+		<span>(*) Required</span>
+	</label>
+</form>
