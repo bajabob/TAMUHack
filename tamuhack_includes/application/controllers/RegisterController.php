@@ -84,7 +84,7 @@ class RegisterController extends Zend_Controller_Action
 				$thActivate->createNewActivation($email, $activation);
 				
 				$mail = new Zend_Mail();
-				$mail->setBodyText("<h3>Welcome to tamuHack!</h3>".
+				$mail->setBodyHtml("<h3>Welcome to tamuHack!</h3>".
     								"<p>We are thrilled to have you join our organization! One last step, 
 										click the activation link so that you can log into the tamuHack portal. 
 										<a href='tamuhack.com/register/activate/email/".$email."/activation/".$activation."'>Activate Here</a>
