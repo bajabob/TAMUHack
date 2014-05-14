@@ -83,7 +83,6 @@ class RegisterController extends Zend_Controller_Action
 				$thActivate = new Application_Model_TH_MembersActivate();
 				$thActivate->createNewActivation($email, $activation);
 				
-				die;
 				$mail = new Zend_Mail();
 				$mail->setBodyText("<h3>Welcome to tamuHack!</h3>".
     								"<p>We are thrilled to have you join our organization! One last step, 
