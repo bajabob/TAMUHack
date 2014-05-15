@@ -64,12 +64,12 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	* @param string $username
 	* @return bool
 	*/
-	public function isActivated($username){
+	public function hasVerifiedEmail($email){
 		$row = $this->fetchRow(
 		$this->select()
-		->where('user = ?', strtolower($username))
+		->where('email = ?', strtolower($email))
 		);
-		if($row->is_activated === '1'){
+		if($row->email_verified === '1'){
 			return true;
 		}
 		return false;
@@ -99,22 +99,22 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	* @param $username string
 	* @param $password string
 	*/
-	public function checkCredentails($username, $password){
+	public function checkCredentails($email, $password){
 		 
 		$row = $this->fetchRow(
 		$this->select()
-			->where('user = ?', strtolower($username))
+			->where('email = ?', strtolower($email))
 		);
 		 
 		if($row === false){
 			return false;
 		}
 		 
-		$sha = new Application_Model_NanoSha256();
+		// check password
+    	$sha = new Application_Model_TH_NanoSha256();
+    	$pass = $sha->getSaltedHash($email, $password);
 		 
-		$hash = $sha->getSaltedHash(strtolower($username), $password);
-		 
-		if($hash === $row->password){
+		if($pass === $row->pass){
 			return true;
 		}else{
 			return false;

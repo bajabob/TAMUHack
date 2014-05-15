@@ -75,33 +75,9 @@ class RegisterController extends Zend_Controller_Action
 				$sha = new Application_Model_TH_NanoSha256();
 				$pass = $sha->getSaltedHash($email, $password);
 				
-				
 				$th->createNewUser($name_first, $name_last, $email, $pass);
 				
-				$activation = $sha->getSaltedHash($email, time());
-				
-				$thActivate = new Application_Model_TH_MembersActivate();
-				$thActivate->createNewActivation($email, $activation);
-				
-				
-				// create view object
-				$html = new Zend_View();
-				$html->setScriptPath(APPLICATION_PATH . '/views/emails/');
-				
-				// assign valeues
-				$html->assign('name', $name_first);
-				$html->assign('email', $email);
-				$html->assign('activation', $activation);
-				
-				// render view
-				$bodyText = $html->render('activation.phtml');
-				
-				$mail = new Zend_Mail('utf-8');
-				$mail->setBodyHtml($bodyText);
-				$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
-				$mail->addTo($email, $name_first." ".$name_last);
-				$mail->setSubject('Activate your tamuHack account');
-				$mail->send();
+				$this->generateActivationEmail($email, $name_first, $name_last, $sha);
 				
 				return $this->_redirect('/register/activationsent/name/'.$name_first);
     		}
@@ -142,12 +118,126 @@ class RegisterController extends Zend_Controller_Action
     		if($hasError)
     		{
     			$this->view->fields = $fields;
-    		}else
+    		}
+    		else
     		{
-    			echo "email found, sending email...";
+    			$sha = new Application_Model_TH_NanoSha256();
+    			$activation = $sha->getSaltedHash($email, time());
+    			 
+    			$thActivate = new Application_Model_TH_MembersRecover();
+    			$thActivate->createNewRecovery($email, $activation);
+    			 
+    			// create view object
+    			$html = new Zend_View();
+    			$html->setScriptPath(APPLICATION_PATH . '/views/emails/');
+    			 
+    			// assign valeues
+    			$html->assign('email', $email);
+    			$html->assign('activation', $activation);
+    			 
+    			// render view
+    			$bodyText = $html->render('recoverpassword.phtml');
+    			 
+    			$mail = new Zend_Mail('utf-8');
+    			$mail->setBodyHtml($bodyText);
+    			$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
+    			$mail->addTo($email, $name_first." ".$name_last);
+    			$mail->setSubject('Recover your tamuHack account password');
+    			$mail->send();
+    			
+     			return $this->_redirect('/register/recoverysent/email/'.$email);
+				
     		}
     	}
     }
+    
+    private function generateActivationEmail($email, $name_first, $name_last, $sha)
+    {
+    	$activation = $sha->getSaltedHash($email, time());
+    	
+    	$thActivate = new Application_Model_TH_MembersActivate();
+    	$thActivate->createNewActivation($email, $activation);
+    	
+    	
+    	// create view object
+    	$html = new Zend_View();
+    	$html->setScriptPath(APPLICATION_PATH . '/views/emails/');
+    	
+    	// assign valeues
+    	$html->assign('name', $name_first);
+    	$html->assign('email', $email);
+    	$html->assign('activation', $activation);
+    	
+    	// render view
+    	$bodyText = $html->render('activation.phtml');
+    	
+    	$mail = new Zend_Mail('utf-8');
+    	$mail->setBodyHtml($bodyText);
+    	$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
+    	$mail->addTo($email, $name_first." ".$name_last);
+    	$mail->setSubject('Activate your tamuHack account');
+    	$mail->send();
+    }
+    
+    
+    public function setpassAction()
+    {
+    	$request = $this->getRequest();
+    	$email = $request->getParam('email', "");
+    	$this->view->email = $email;
+    	$activation = $request->getParam('activation', "");
+		$this->view->activation = $activation;
+		
+    	$thRec = new Application_Model_TH_MembersRecover();
+    	 
+    	$this->view->showform = false;
+    	
+    	// activation exists
+    	if($thRec->exists($email, $activation))
+    	{
+			// allow user to reset password
+    		$this->view->showform = true;
+    		
+    		/**
+    		 * a post action has occured, validate data
+    		 */
+    		if($request->isPost())
+    		{
+    			$hasError = false;
+    			
+    			$password = $request->getPost('password', "");
+    			$fields["password"] = "";
+    			if(strlen($password) < 8)
+    			{
+    				$hasError = true;
+    				$fields["password_error"] = "Password must be at least 8 characters!";
+    			}
+    			
+    			if($hasError)
+    			{
+    				$this->view->fields = $fields;
+    			}
+    			else
+    			{
+    				$thRec->deleteEntry($email);
+    				$members = new Application_Model_TH_Members();
+    				
+    				$sha = new Application_Model_TH_NanoSha256();
+    				$pass = $sha->getSaltedHash(strtolower($email), $password);
+    				
+    				$members->editUser($email, array('pass' => $pass));
+    				
+    				return $this->_redirect('/register/passwordset');
+    			}
+    		}
+    	}
+    }
+    
+    
+    public function passwordsetAction()
+    {
+    }
+    
     
     public function activateAction()
     {
@@ -189,6 +279,11 @@ class RegisterController extends Zend_Controller_Action
 	public function activationsentAction()
 	{
 		$this->view->name = $this->_getParam('name');
+	}
+	
+	public function recoverysentAction()
+	{
+		$this->view->email = $this->_getParam('email');
 	}
 
 }
