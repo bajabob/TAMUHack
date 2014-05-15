@@ -242,8 +242,8 @@ class RegisterController extends Zend_Controller_Action
     public function activateAction()
     {
     	$request = $this->getRequest();
-    	$email = $request->getParam('email');
-    	$activation = $request->getParam('activation');
+    	$email = $request->getParam('email', "");
+    	$activation = $request->getParam('activation', "");
     	
     	$thActivate = new Application_Model_TH_MembersActivate();
     	
