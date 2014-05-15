@@ -15,6 +15,7 @@ class RegisterController extends Zend_Controller_Action
     	$request = $this->getRequest();
     	$fields = array("name_first" => "", "name_last" => "", "email" => "");
 
+
     	/**
     	 * a post action has occured, validate data
     	 */
@@ -82,6 +83,7 @@ class RegisterController extends Zend_Controller_Action
 				$thActivate = new Application_Model_TH_MembersActivate();
 				$thActivate->createNewActivation($email, $activation);
 				
+				
 				// create view object
 				$html = new Zend_View();
 				$html->setScriptPath(APPLICATION_PATH . '/views/emails/');
@@ -90,17 +92,14 @@ class RegisterController extends Zend_Controller_Action
 				$html->assign('email', $email);
 				$html->assign('activation', $activation);
 				
-				// create mail object
-				$mail = new Zend_Mail('utf-8');
-				
 				// render view
 				$bodyText = $html->render('activation.phtml');
 				
-				// configure base stuff
-				$mail->addTo($email);
-				$mail->setSubject('Activate your tamuHack account');
-				$mail->setFrom('noreply@tamuhack.com','tamuHack');
+				$mail = new Zend_Mail('utf-8');
 				$mail->setBodyHtml($bodyText);
+				$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
+				$mail->addTo($email, $name_first." ".$name_last);
+				$mail->setSubject('Activate your tamuHack account');
 				$mail->send();
 				
 				return $this->_redirect('/register/success/name/'.$name_first);
