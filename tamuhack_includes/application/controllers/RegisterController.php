@@ -83,15 +83,25 @@ class RegisterController extends Zend_Controller_Action
 				$thActivate = new Application_Model_TH_MembersActivate();
 				$thActivate->createNewActivation($email, $activation);
 				
-				$mail = new Zend_Mail();
-				$mail->setBodyHtml("<h3>Welcome to tamuHack!</h3>".
-    								"<p>We are thrilled to have you join our organization! One last step, 
-										click the activation link so that you can log into the tamuHack portal. 
-										<a href='tamuhack.com/register/activate/email/".$email."/activation/".$activation."'>Activate Here</a>
-									</p>");
-				$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
-				$mail->addTo($email, $name_first." ".$name_last);
+				// create view object
+				$html = new Zend_View();
+				$html->setScriptPath(APPLICAITON_PATH. '/modules/default/views/emails/');
+				
+				// assign valeues
+				$html->assign('email', $email);
+				$html->assign('activation', $activation);
+				
+				// create mail object
+				$mail = new Zend_Mail('utf-8');
+				
+				// render view
+				$bodyText = $html->render('activation.phtml');
+				
+				// configure base stuff
+				$mail->addTo($email);
 				$mail->setSubject('Activate your tamuHack account');
+				$mail->setFrom('noreply@tamuhack.com','tamuHack');
+				$mail->setBodyHtml($bodyText);
 				$mail->send();
 				
 				return $this->_redirect('/register/success/name/'.$name_first);
