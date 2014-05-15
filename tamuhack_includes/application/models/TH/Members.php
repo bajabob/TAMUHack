@@ -47,12 +47,12 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	
 	/**
 	 * Edit user's account
-	 * @param string $username
+	 * @param string $email
 	 * @param array $arr
 	 * 
 	 */
-	public function editUser($username, $arr){
-		$where = $this->getAdapter()->quoteInto('user = ?', strtolower($username));
+	public function editUser($email, $arr){
+		$where = $this->getAdapter()->quoteInto('email = ?', strtolower($email));
 		return $this->update($arr, $where);
 	}
 	

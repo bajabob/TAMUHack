@@ -89,6 +89,7 @@ class RegisterController extends Zend_Controller_Action
 				$html->setScriptPath(APPLICATION_PATH . '/views/emails/');
 				
 				// assign valeues
+				$html->assign('name', $name_first);
 				$html->assign('email', $email);
 				$html->assign('activation', $activation);
 				
@@ -102,7 +103,7 @@ class RegisterController extends Zend_Controller_Action
 				$mail->setSubject('Activate your tamuHack account');
 				$mail->send();
 				
-				return $this->_redirect('/register/success/name/'.$name_first);
+				return $this->_redirect('/register/activationsent/name/'.$name_first);
     		}
     	}    	
     }
@@ -148,12 +149,44 @@ class RegisterController extends Zend_Controller_Action
     	}
     }
     
+    public function activateAction()
+    {
+    	$request = $this->getRequest();
+    	$email = $request->getParam('email');
+    	$activation = $request->getParam('activation');
+    	
+    	$thActivate = new Application_Model_TH_MembersActivate();
+    	
+    	// activation exists
+    	if($thActivate->exists($email, $activation))
+    	{
+    		$thActivate->deleteEntry($email);
+    		
+    		$members = new Application_Model_TH_Members();
+    		
+    		$members->editUser($email, array('email_verified' => 1));
+    		
+    		return $this->_redirect('/register/accountactivated/email/'.$email);
+    	}
+    	// activation doesn't exist
+    	else
+    	{
+    		echo "Activation link invalid. If this issue continues, please contact support@tamuhack.com.";
+    	}
+    }
+    
+    public function accountactivatedAction()
+    {
+    	$request = $this->getRequest();
+    	$this->view->email = $request->getParam('email');
+    }
+    
     public function emailexistsAction()
     {
     	$this->view->email = $this->_getParam('email');
 	}
 	
-	public function successAction()
+	public function activationsentAction()
 	{
 		$this->view->name = $this->_getParam('name');
 	}

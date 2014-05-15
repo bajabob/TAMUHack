@@ -1,7 +1,7 @@
 <?php
 
-class Application_Model_TH_MembersActivate extends Zend_Db_Table_Abstract{
-
+class Application_Model_TH_MembersActivate extends Zend_Db_Table_Abstract
+{
 	
 	protected $_name = 'th_members_activate';	
 
@@ -9,7 +9,8 @@ class Application_Model_TH_MembersActivate extends Zend_Db_Table_Abstract{
 	/**
 	* add registration hash to table
 	*/
-	public function createNewActivation($email, $activation){
+	public function createNewActivation($email, $activation)
+	{
 	
 		$arr = array(
 				'email' 		=> strtolower($email),
@@ -25,15 +26,28 @@ class Application_Model_TH_MembersActivate extends Zend_Db_Table_Abstract{
 	 * @param string $email
 	 * @return bool
 	 */
-	public function exists($email){
+	public function exists($email, $activation)
+	{
 		$row = $this->fetchRow(
 				$this->select()
 				->where('email = ?', strtolower($email))
+				->where('activation = ?', $activation)
 		);
 		if($row !== null){
 			return true;
 		}
 		return false;
 	}	
+	
+	
+	/**
+	 * delete a row by the user's email
+	 * @see Zend_Db_Table_Abstract::delete()
+	 */
+	public function deleteEntry($email)
+	{
+		$where = $this->getAdapter()->quoteInto('email = ?', strtolower($email));
+		$this->delete($where);
+	}
 	
 }
