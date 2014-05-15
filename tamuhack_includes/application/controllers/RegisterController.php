@@ -15,7 +15,6 @@ class RegisterController extends Zend_Controller_Action
     	$request = $this->getRequest();
     	$fields = array("name_first" => "", "name_last" => "", "email" => "");
 
-
     	/**
     	 * a post action has occured, validate data
     	 */
@@ -85,7 +84,7 @@ class RegisterController extends Zend_Controller_Action
 				
 				// create view object
 				$html = new Zend_View();
-				$html->setScriptPath(APPLICAITON_PATH. '/modules/default/views/emails/');
+				$html->setScriptPath(APPLICATION_PATH . '/views/emails/');
 				
 				// assign valeues
 				$html->assign('email', $email);
