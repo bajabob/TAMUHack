@@ -1,0 +1,55 @@
+<script>
+	function signup_makesure() {
+	  if (confirm('This is a confirmation. You have verified that your calendar is clear for this event and that you will attend. If you RSVP and do not attend you may lose reputation points in the club and lose a chance at winning end of the year prizes. Accountability is very important. If you are unsure, click cancel.')) {
+	    return true;
+	  }
+	  else {
+		console.log("not accepted");
+	    return false;
+	  }
+	}
+</script>
+
+<?php if(isset($this->event)): ?>
+
+<img src="<?php echo $this->baseUrl('images/index/events/headers/'.$this->event->id.'.png'); ?>" />
+
+<h1><?php echo $this->event->title;?> | <?php echo date("F j, Y", $this->event->date); ?></h1>
+
+<div id="event-left-col-wrap">
+    <div id="event-left-col">
+    	
+    	<!-- Official Event Link -->
+    	<a href="<?php echo $this->event->link; ?>" target="_blank" title="official site">
+    		<img src="<?php echo $this->baseUrl("images/index/events/official_site.png"); ?>" id="center"/>
+    	</a>
+    	
+    	<!-- Signup / Signed Up -->
+    	<?php if(!isset($this->signedup)):?>
+    	<a href="<?php echo $this->baseUrl('events/signup/eid/'.$this->event->id); ?>" onclick="return signup_makesure();" title="signup for event">
+    		<img src="<?php echo $this->baseUrl("images/index/events/signup.png"); ?>" id="center"/>
+    	</a>
+    	<?php else: ?>
+    		<img src="<?php echo $this->baseUrl("images/index/events/signedup.png"); ?>" id="center"/>
+    	<?php endif; ?>
+    	
+    	<!-- Attendees -->
+    	<h1>Attending</h1>
+    	<ul>
+    	<?php foreach($this->attendees as $member): ?>
+    		<li><?php echo $member->member_name; ?></li>
+    	<?php endforeach; ?>
+    	</ul>
+    	
+    </div>
+</div>
+<div id="event-right-col">
+	
+	<iframe class="event_map" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<?php echo $this->event->location; ?>&key=AIzaSyBTlo9yPBJ8CAT7C1Gt7ksMzsgb-Kiomjg"></iframe>
+	
+</div>
+<div id="clear"></div>
+
+<?php else: ?>
+<p class="error">No event found matching that ID.</p>
+<?php endif; ?>

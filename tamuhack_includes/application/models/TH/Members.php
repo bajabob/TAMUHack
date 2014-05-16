@@ -15,8 +15,8 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 				'account_type'	=> 0,
 				'email_verified'=> 0,
 				'rep'			=> 0,
-			    'name_first'   	=> $first,
-				'name_last'     => $last,
+			    'name_first'   	=> ucfirst($first),
+				'name_last'     => ucfirst($last),
 				'email' 		=> strtolower($email),
 				'pass'			=> $pass
 		);
@@ -126,10 +126,10 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	 * get the user's data row
 	 * @param string $user
 	 */
-	public function getAll($user){
+	public function getAll($email){
 		$row = $this->fetchRow(
 		$this->select()
-			->where('user = ?', strtolower($user))
+			->where('email = ?', strtolower($email))
 		);
 		return $row;
 	}

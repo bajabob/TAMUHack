@@ -7,6 +7,12 @@ class LoginController extends Zend_Controller_Action
     public function init()
     {
     	$this->_helper->layout()->setLayout("index");
+    	
+    	$auth = new Zend_Session_Namespace('Zend_Auth');
+    	if(isset($auth->id))
+    	{
+    		$this->view->auth = $auth;
+    	}
     }
 
 
@@ -45,14 +51,25 @@ class LoginController extends Zend_Controller_Action
     		{
     			$member = new Application_Model_TH_Members();
 
-    			if(!$member->hasVerifiedEmail($email))
+    			if(!$member->exists($email))
+    			{
+    				$fields["error"] = "Invalid email/password combination!";
+    			}
+    			else if(!$member->hasVerifiedEmail($email))
     			{
     				$fields["error"] = "Email not verified! Please check your inbox for an activation link. 
     						If you need a new activation email please click the activation link below.";
     			}
     			else if ($member->checkCredentails($email, $password))
     			{
-    				
+    				$user = $member->getAll($email);
+    				$authNamespace = new Zend_Session_Namespace('Zend_Auth');
+    				$authNamespace->id = $user['id'];
+    				$authNamespace->email = $user['email'];
+    				$authNamespace->name_first = $user['name_first'];
+    				$authNamespace->name_last = $user['name_last'];
+    				$authNamespace->name = $user['name_first']." ".$user['name_last'];
+    				return $this->_redirect('/portal');
     			}
     			else 
     			{

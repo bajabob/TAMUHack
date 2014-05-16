@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class NewsController extends Zend_Controller_Action
 {
 
 
@@ -18,8 +18,8 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-    	
+    	$channel = new Zend_Feed_Rss('http://tamuhack.blogspot.com/feeds/posts/default?alt=rss');
+    	$this->view->channel = $channel;
     }
-
 
 }

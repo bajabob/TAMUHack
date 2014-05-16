@@ -1,0 +1,9 @@
+<h1>Events</h1>
+<hr />
+
+<?php foreach($this->events as $event): ?>
+	<a href="<?php echo $this->baseUrl("events/event/id/".$event->id); ?>"><div>
+	<h2><?php echo $event->title; ?> | <?php echo date("F j, Y", $event->date); ?></h2>
+		<img src="<?php echo $this->baseUrl('images/index/events/headers/'.$event->id.'.png'); ?>" />
+	</div></a>
+<?php endforeach; ?>

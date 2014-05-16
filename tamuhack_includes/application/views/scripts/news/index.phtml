@@ -29,16 +29,23 @@
 	    }
 	}
 	
+	
+	function getAuthor($author)
+	{
+		$startsAt = strpos($author, "(") + strlen("(");
+		$endsAt = strpos($author, ")", $startsAt);
+		return substr($author, $startsAt, $endsAt - $startsAt);
+	}
 
 	
 	$i = 0;
 	foreach($this->channel as $entry): 
 ?>
 
-<h2><a href="<?php echo $entry->link(); ?>" target="_blank"><?php echo $entry->title(); ?></a></h2>
-<img src="<?php echo $this->baseUrl("images/hoverdog/news/h2_news.png"); ?>" class="h2_icon" />
-<p><em><?php echo time_elapsed_string(strtotime($entry->pubDate())); ?></em></p>
+<h1><a href="<?php echo $entry->link(); ?>" target="_blank"><?php echo $entry->title(); ?></a></h1>
+<p class="author"><em><?php echo time_elapsed_string(strtotime($entry->pubDate())); ?> | <?php echo getAuthor($entry->author()); ?></em></p>
 <p><?php echo $entry->description(); ?></p>
+<hr />
 <?php 
 	if($i >= 3){break;}
 	$i++; 
@@ -46,7 +53,7 @@
 ?>
 </div>
 <p>
-	<a href="http://hoverdog.blogspot.com/" title="Older entries..." target="_blank">
-		<img src="<?php echo $this->baseUrl("images/hoverdog/news/more_stories.png"); ?>"/>
+	<a href="http://tamuhack.blogspot.com/" title="Older entries..." target="_blank">
+		<img src="<?php echo $this->baseUrl("images/index/news/more_stories.png"); ?>" id="center"/>
 	</a>
 </p>

@@ -35,7 +35,23 @@
  
 <div class="top_nav">
     <div class="top_nav_inner">
-        <div class="top_nav_menu_logo"></div>
+    	<!-- Logo -->
+        <a href="<?php echo $this->baseUrl("/"); ?>"><div class="top_nav_menu_logo"></div></a>
+        
+        <!-- Login/Register/Portal Links -->
+        <div class="top_nav_login">
+        	<?php if(isset($this->auth)): ?>
+        	<a href="<?php echo $this->baseUrl("/portal"); ?>"><?php echo $this->auth->name; ?></a> | 
+        	<a href="<?php echo $this->baseUrl("/portal/logout"); ?>">Logout</a>
+        	<?php endif; ?>
+        	
+        	<?php if(!isset($this->auth)): ?>
+        	<a href="<?php echo $this->baseUrl("/login"); ?>">Login</a> | 
+        	<a href="<?php echo $this->baseUrl("/register"); ?>">Register</a>
+        	<?php endif; ?>
+        </div>
+        
+        <!-- Primary nav menu -->
         <ul class="top_nav_menu">
         	<?php 
         		$uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); 
@@ -49,9 +65,8 @@
         		 */
         		$uris = array(
 							array("/", 				"HOME"), 
-							array("index/news",		"NEWS"),
-							array("index/about", 	"ABOUT"),
-							array("index/contact", 	"CONTACT")
+							array("/news",			"NEWS"),
+							array("/contact",	 	"CONTACT")
 						);
         		foreach ($uris as $item):
         	?>
@@ -67,18 +82,56 @@
         </ul>
     </div>
 </div>
- 
-<div class="content"> 
-	<?php echo $this->layout()->content; ?>
+
+<!-- Page content generated below -->
+<div class="body">     
+
+	<!-- Primary nav menu -->
+	<?php if(isset($this->auth)): ?>
+        
+        <div class="portal_nav">
+	        <ul>
+	        	<?php 
+        		$uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); 
+        		
+        		/**
+					below
+					-to define a linked controller address, insert an array element in the form,
+						array("controllerName/node", "LINK-TITLE")
+					-to define an external address insert a link in the place of the controller and
+						include "http". 
+        		 */
+        		$portalLinks = array(
+							array("/portal", 		"PORTAL"), 
+							array("/events",		"EVENTS")
+						);
+        		foreach ($portalLinks as $item):
+        	?>
+        		<li<?php if($uri === $this->baseUrl($item[0])): ?> class="current"<?php endif;?>>
+        			<?php if(strpos($item[0],'http://') !== false){?>
+        				<a href="<?php echo $item[0]; ?>"target="_blank" ><?php echo $item[1]; ?></a>
+        			<?php }else{?>
+        				<a href="<?php echo $this->baseUrl($item[0]); ?>"><?php echo $item[1]; ?></a>
+        			<?php }?>
+        		</li>
+        	<?php endforeach; ?>
+	        </ul>
+        </div>
+	<?php endif; ?>
+
+	<div class="content">
+		<?php echo $this->layout()->content; ?>
+	</div>
 </div> 
 
+<!-- Bottom Nav -->
 <div class="bottom_nav">
     <div class="bottom_nav_inner">
     	<div class="bottom_nav_menu_logo"></div>
     	<ul class="bottom_nav_menu">
         	<?php 
-        		array_push($uris, 	array("index/legal",	"LEGAL")
-							);
+        		//array_push($uris, 	array("index/legal",	"LEGAL")
+					//		);
 					
         		
         		foreach ($uris as $item):
