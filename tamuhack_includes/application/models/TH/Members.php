@@ -126,12 +126,21 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	 * get the user's data row
 	 * @param string $user
 	 */
-	public function getAll($email){
+	public function getMember($email){
 		$row = $this->fetchRow(
 		$this->select()
 			->where('email = ?', strtolower($email))
 		);
 		return $row;
+	}
+	
+	
+	public function getAll()
+	{
+		$rows = $this->fetchAll(
+				$this->select()
+		);
+		return $rows;
 	}
 	
 }

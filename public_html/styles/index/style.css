@@ -244,6 +244,16 @@ body{
     line-height:1;
     position:relative;
 }
+.content h2 {
+	color:#004e7c;
+    height: 20px;
+    font-family:opensans-bold, sans-serif;
+    font-size: 1.2em;
+    width:960px;
+    margin-bottom:5px;
+    line-height:1;
+    position:relative;
+}
 .content a,
 .content a:visited{
 	color:#a65b00;

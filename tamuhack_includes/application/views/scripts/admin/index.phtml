@@ -1,0 +1,25 @@
+<h1>Admin</h1>
+<p>
+	<h2>Total Members: <?php echo sizeof($this->members); ?> </h2>
+	<h2>Members:</h2>
+	<table>
+	<tr>
+		<td style="width:150px;">First Name</td>
+		<td style="width:150px;">Last Name</td>
+		<td style="width:150px;">Email Verified</td>
+	</tr>
+	<?php foreach($this->members as $member): ?>
+		<tr>
+			<td><?php echo $member->name_first;?></td> 
+			<td><?php echo $member->name_last;?></td>
+			<td>
+				<?php if($member->email_verified == 1): ?>
+				Yes
+				<?php else: ?>
+				<span class="error">No</span>
+				<?php endif; ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+</p>
