@@ -36,15 +36,17 @@ class AdminController extends Zend_Controller_Action
     	{
     		$members = new Application_Model_TH_Members();
     		$people = $members->getAll();
+    		
+    		$mail = new Zend_Mail('utf-8');
+    		$mail->setBodyHtml($request->getPost("body"));
+    		$mail->setFrom('noreply@tamuhack.com', 'No-Reply: TAMUHack');
     		foreach($people as $person)
-    		{
-	    		$mail = new Zend_Mail('utf-8');
-	    		$mail->setBodyHtml($request->getPost("body"));
-	    		$mail->setFrom('noreply@tamuhack.com', 'No-Reply: TAMUHack');
-    			$mail->addTo($person->email, $person->name_first." ".$person->name_last);
-	    		$mail->setSubject($request->getPost("subject"));
-	    		$mail->send();
+	    	{
+    			$mail->addTo($person->email, "Bob");
     		}
+    		$mail->setSubject($request->getPost("subject"));
+    		$mail->send();
+    		$this->view->sent = true;
     	}
     }
     

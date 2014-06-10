@@ -1,3 +1,8 @@
+<?php if(isset($this->sent)):?>
+<h2 style="color:green">Email Sent!</h2>
+<hr />
+<?php endif; ?>
+<p>Note: If you insert a link be sure to specify "http://". TAMU email system doesn't show links without it.</p>
 <form method="post" action="/admin/mailout" class="form form_mailout">
 	<label>
 		<span>Email Subject:</span>
