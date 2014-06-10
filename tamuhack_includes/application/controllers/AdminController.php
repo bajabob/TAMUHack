@@ -41,7 +41,7 @@ class AdminController extends Zend_Controller_Action
 	    		$mail = new Zend_Mail('utf-8');
 	    		$mail->setBodyHtml($request->getPost("body"));
 	    		$mail->setFrom('noreply@tamuhack.com', 'No-Reply: TAMUHack');
-    			$mail->addTo($person->email, "Bob");
+    			$mail->addTo($person->email, $person->name_first." ".$person->name_last);
 	    		$mail->setSubject($request->getPost("subject"));
 	    		$mail->send();
 	    		$this->view->sent = true;
