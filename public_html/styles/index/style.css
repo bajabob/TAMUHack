@@ -427,6 +427,11 @@ body{
 	height:11em;
 }
 
+.form_mailout{
+	height:870px;
+	width:900px;
+}
+
 .form_setpass{
 	height:9em;
 }

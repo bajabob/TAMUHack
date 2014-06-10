@@ -188,7 +188,7 @@ class RegisterController extends Zend_Controller_Action
     	
     	$mail = new Zend_Mail('utf-8');
     	$mail->setBodyHtml($bodyText);
-    	$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
+    	$mail->setFrom('noreply@tamuhack.com', 'No-Reply: TAMUHack');
     	$mail->addTo($email, $name_first." ".$name_last);
     	$mail->setSubject('Activate your tamuHack account');
     	$mail->send();

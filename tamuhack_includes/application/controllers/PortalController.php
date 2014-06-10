@@ -26,5 +26,7 @@ class PortalController extends Zend_Controller_Action
     	$auth = new Zend_Session_Namespace('Zend_Auth');
     	$auth->unsetAll();
     }
+    
+    public function invalidcredsAction(){}
 
 }

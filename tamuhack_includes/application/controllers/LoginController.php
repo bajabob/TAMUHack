@@ -68,6 +68,7 @@ class LoginController extends Zend_Controller_Action
     				$authNamespace->email = $user['email'];
     				$authNamespace->name_first = $user['name_first'];
     				$authNamespace->name_last = $user['name_last'];
+    				$authNamespace->account_type = $user['account_type'];
     				$authNamespace->name = $user['name_first']." ".$user['name_last'];
     				return $this->_redirect('/portal');
     			}
