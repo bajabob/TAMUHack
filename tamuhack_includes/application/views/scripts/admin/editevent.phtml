@@ -1,0 +1,41 @@
+<h1>Edit Event</h1>
+<?php if(isset($this->updated)):?>
+<p class="center">Event Updated!</p>
+<?php endif; ?>
+<hr />
+<form method="post" action="/admin/editevent/id/<?php echo $this->event->id; ?>" class="form form_editevent" enctype="multipart/form-data">
+	<label>
+		<span>Event Title:</span>
+		<input type="text" name="title" maxlength="100" value="<?php echo $this->event->title; ?>" />
+	</label>
+
+	<label>
+		<span>Date (MM/DD/YYYY):</span>
+		<input type="text" name="date" maxlength="10" value="<?php echo date("m/d/Y", $this->event->date); ?>" />
+	</label>
+	
+	<label>
+		<span>Location (Google Maps Code): (<a href="<?php echo $this->baseUrl("admin/howto"); ?>">What's This?</a>)</span>
+		<input type="text" name="location" maxlength="200" value="<?php echo $this->event->location; ?>" />
+	</label>
+	
+	<label>
+		<span>Link To Event Site:</span>
+		<input type="text" name="link" maxlength="100" value="<?php echo $this->event->link; ?>" />
+	</label>
+	
+	<label>
+		<span>Event Banner Photo: (<a href="<?php echo $this->baseUrl("admin/howto"); ?>">What's This?</a>)</span>
+		<input type="file" name="file" id="upload">
+	</label>
+	
+
+	<span>Is Live On TAMUHack: </span>
+	<div style="height:10px;">
+	<input type="radio" name="publish" value="1" <?php if($this->event->publish == 1) echo "checked"?>> Yes | 
+	<input type="radio" name="publish" value="0" <?php if($this->event->publish == 0) echo "checked"?>> No
+	</div>
+	
+	<br />
+	<input type="submit" value="Submit" id="center">
+</form>

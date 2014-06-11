@@ -36,9 +36,7 @@ class EventsController extends Zend_Controller_Action
     	if($rsvp->exists($eid, $auth->id)){
     		$this->view->signedup = true;
     	}
-    	
     	$this->view->attendees = $rsvp->getAllForEvent($eid);
-    	
     }
     
     
