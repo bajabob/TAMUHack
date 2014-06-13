@@ -26,7 +26,8 @@
     	
     	<!-- Signup / Signed Up -->
     	<?php if(!isset($this->signedup)):?>
-    	<a href="<?php echo $this->baseUrl('events/signup/eid/'.$this->event->id); ?>" onclick="return signup_makesure();" title="signup for event">
+    	<!-- onclick="return signup_makesure();" -->
+    	<a href="<?php echo $this->baseUrl('events/signup/eid/'.$this->event->id); ?>" title="signup for event">
     		<img src="<?php echo $this->baseUrl("images/index/events/signup.png"); ?>" id="center"/>
     	</a>
     	<?php else: ?>
