@@ -6,7 +6,7 @@ class ErrorController extends Zend_Controller_Action
 	
     public function init()
     {
-    	$this->_helper->layout()->setLayout("index");
+    	$this->_helper->layout()->setLayout("org");
     }
 	
     public function errorAction()

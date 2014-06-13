@@ -1,6 +1,6 @@
 <?php
 
-class ContactController extends Zend_Controller_Action
+class OrgController extends Zend_Controller_Action
 {
 
 

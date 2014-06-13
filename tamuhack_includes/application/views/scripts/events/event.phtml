@@ -12,7 +12,7 @@
 
 <?php if(isset($this->event)): ?>
 
-<img src="<?php echo $this->baseUrl('images/index/events/headers/'.$this->event->id.'.png'); ?>" />
+<img src="<?php echo $this->baseUrl('images/org/events/headers/'.$this->event->id.'.png'); ?>" />
 
 <h1><?php echo $this->event->title;?> | <?php echo date("F j, Y", $this->event->date); ?></h1>
 
@@ -21,17 +21,17 @@
     	
     	<!-- Official Event Link -->
     	<a href="<?php echo $this->event->link; ?>" target="_blank" title="official site">
-    		<img src="<?php echo $this->baseUrl("images/index/events/official_site.png"); ?>" id="center"/>
+    		<img src="<?php echo $this->baseUrl("images/org/events/official_site.png"); ?>" id="center"/>
     	</a>
     	
     	<!-- Signup / Signed Up -->
     	<?php if(!isset($this->signedup)):?>
     	<!-- onclick="return signup_makesure();" -->
     	<a href="<?php echo $this->baseUrl('events/signup/eid/'.$this->event->id); ?>" title="signup for event">
-    		<img src="<?php echo $this->baseUrl("images/index/events/signup.png"); ?>" id="center"/>
+    		<img src="<?php echo $this->baseUrl("images/org/events/signup.png"); ?>" id="center"/>
     	</a>
     	<?php else: ?>
-    		<img src="<?php echo $this->baseUrl("images/index/events/signedup.png"); ?>" id="center"/>
+    		<img src="<?php echo $this->baseUrl("images/org/events/signedup.png"); ?>" id="center"/>
     	<?php endif; ?>
     	
     	<!-- Attendees -->

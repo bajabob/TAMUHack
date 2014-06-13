@@ -4,7 +4,7 @@ class AdminController extends Zend_Controller_Action
 {
     public function init()
     {
-    	$this->_helper->layout()->setLayout("index");
+    	$this->_helper->layout()->setLayout("org");
     	
     	$auth = new Zend_Session_Namespace('Zend_Auth');
     	if(!isset($auth->id))
@@ -102,7 +102,7 @@ class AdminController extends Zend_Controller_Action
 			 *	Image uploading
 			 */
 			if($_FILES['file']['tmp_name'] != ""){
-				$destination = APPLICATION_PATH.'/../../public_html/images/index/events/headers/';
+				$destination = APPLICATION_PATH.'/../../public_html/images/org/events/headers/';
 				move_uploaded_file($_FILES['file']['tmp_name'], $destination.$eid.'.png');
 			}
 			

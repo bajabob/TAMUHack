@@ -114,7 +114,7 @@ body{
 	height:83px;
 	float:left;
 	margin-top:10px;
-	background:url("../../images/index/tamuhack_logo_web.png") no-repeat;
+	background:url("../../images/org/tamuhack_logo_web.png") no-repeat;
 }
 .top_nav_menu{
 	list-style:none;
@@ -294,7 +294,7 @@ body{
 	height:151px;
 	float:right;
 	margin-top:10px;
-	background:url("../images/hoverdog/hoverdog_logo_bottom.png") no-repeat;
+	background:url("../org/hoverdog/hoverdog_logo_bottom.png") no-repeat;
 }
 .bottom_nav_menu{
 	width:auto;
@@ -357,7 +357,7 @@ body{
 	NEWS
 */
 .news h1{
-	background:url("../../images/index/news/icon.png") no-repeat;
+	background:url("../../images/org/news/icon.png") no-repeat;
     height: 56px;
     font-weight: bold;
     font-size: 20px;
