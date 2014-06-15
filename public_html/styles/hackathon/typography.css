@@ -1,10 +1,5 @@
-@font-face {
-font-family:Garamond;
-src:url(Garamond.otf) format(opentype);
-}
-
 body {
-font:16px "Open Sans",Helvetica Neue,sans-serif;
+font:20px "Open Sans",Helvetica Neue,sans-serif;
 color:#333;
 }
 
