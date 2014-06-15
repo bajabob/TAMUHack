@@ -16,7 +16,8 @@ margin:auto;
 .landing img {
 display:inline;
 position:relative;
-max-width:700px;
+margin-top:50px;
+max-width:550px;
 height:auto;
 }
 
