@@ -1,6 +1,6 @@
 <?php
 
-class RegisterExtController extends Zend_Controller_Action
+class RegisterextController extends Zend_Controller_Action
 {
 
 
