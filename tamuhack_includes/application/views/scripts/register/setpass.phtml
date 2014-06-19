@@ -2,7 +2,7 @@
  
  <h1 class="center">Set a new password</h1>
 <p class="center"> New password for <?php echo $this->email; ?> </p>
- <form class="form form_setpass" action="<?php echo $this->baseUrl("/register/setpass/email/".$this->email."/activation/".$this->activation); ?>" method="post">
+ <form class="form form_setpass" action="<?php echo $this->baseUrl("/registerext/setpass/email/".$this->email."/activation/".$this->activation); ?>" method="post">
  	<label>
 		<span>Password:</span>
 		<?php if(isset($this->fields["password_error"])):?>
