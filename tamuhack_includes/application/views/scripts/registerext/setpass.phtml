@@ -1,0 +1,24 @@
+ <?php if($this->showform):?>
+ 
+ <h1 class="center">Set a new password</h1>
+<p class="center"> New password for <?php echo $this->email; ?> </p>
+ <form class="form form_setpass" action="<?php echo $this->baseUrl("/register/setpass/email/".$this->email."/activation/".$this->activation); ?>" method="post">
+ 	<label>
+		<span>Password:</span>
+		<?php if(isset($this->fields["password_error"])):?>
+		<span class="error"><?php echo $this->fields["password_error"];?></span>
+		<?php endif; ?>
+		<input type="password" name="password">
+	</label>
+	<br>
+	<input type="submit" value="Submit">
+</form>
+ 
+ <?php endif; ?>
+ 
+ <?php if(!$this->showform): ?>
+ 	
+ 	<h1>Invalid Password Reset Link</h1>
+ 	<p>Invalid password link used, if you need a new one please use <a href="<?php echo $this->baseUrl("/register/recover/"); ?>">this form</a>.</p>
+ 
+ <?php endif;?>

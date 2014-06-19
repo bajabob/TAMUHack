@@ -148,7 +148,7 @@ class RegisterController extends Zend_Controller_Action
     			$mail->setBodyHtml($bodyText);
     			$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
     			$mail->addTo($email, $name_first." ".$name_last);
-    			$mail->setSubject('Recover your tamuHack account password');
+    			$mail->setSubject('Recover your TAMUHack account password');
     			$mail->send();
     			
      			return $this->_redirect('/register/recoverysent/email/'.$email);

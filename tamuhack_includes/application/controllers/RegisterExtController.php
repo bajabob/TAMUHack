@@ -1,12 +1,12 @@
 <?php
 
-class ExtRegisterController extends Zend_Controller_Action
+class RegisterExtController extends Zend_Controller_Action
 {
 
 
     public function init()
     {
-    	$this->_helper->layout()->setLayout("org");
+    	$this->_helper->layout()->setLayout("hackathon/content");
     	
     	$auth = new Zend_Session_Namespace('Zend_Auth');
     	if(isset($auth->id))
@@ -19,7 +19,14 @@ class ExtRegisterController extends Zend_Controller_Action
     public function indexAction()
     {
     	$request = $this->getRequest();
-    	$fields = array("name_first" => "", "name_last" => "", "email" => "");
+    	$fields = array(
+    			"name_first" => "", 
+    			"name_last" => "", 
+    			"email" => "",
+    			"grad_year"=> "",
+    			"school" => "",
+    			"linkedin" => ""
+    	);
 
 
     	/**
@@ -49,11 +56,10 @@ class ExtRegisterController extends Zend_Controller_Action
 
     		$email = trim($request->getPost('email', ""));
     		$fields["email"] = $email;
-    		$lookup = stripos($email, "@tamu.edu");
-    		if($lookup === false)
+    		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
     		{
     			$hasError = true;
-    			$fields["email_error"] = "Not a valid email. Must be \"@tamu.edu\"!";
+    			$fields["email_error"] = "Not a valid email!";
     		}
     		
     		$password = $request->getPost('password', "");
@@ -63,13 +69,22 @@ class ExtRegisterController extends Zend_Controller_Action
     			$hasError = true;
     			$fields["password_error"] = "Password must be at least 8 characters!";
     		}
+    		
+    		$grad_year = trim($request->getPost('grad_year', ""));
+    		$fields["grad_year"] = $grad_year;
+    		
+    		$school = trim($request->getPost('school', ""));
+    		$fields["school"] = $school;
+    		
+    		$linkedin = trim($request->getPost('linkedin', ""));
+    		$fields["linkedin"] = $linkedin;
 
-    		$th = new Application_Model_TH_Members();
+    		$th = new Application_Model_Hack_Members();
     		
     		if($th->exists($email))
     		{
     			// email is already in system
-    			return $this->_redirect('/register/emailexists/email/'.$email);
+    			return $this->_redirect('/registerext/emailexists/email/'.$email);
     		}
     		else if($hasError)
     		{
@@ -81,11 +96,11 @@ class ExtRegisterController extends Zend_Controller_Action
 				$sha = new Application_Model_TH_NanoSha256();
 				$pass = $sha->getSaltedHash($email, $password);
 				
-				$th->createNewUser($name_first, $name_last, $email, $pass);
+				$th->createNewUser($name_first, $name_last, $email, $pass, $grad_year, $school, $linkedin);
 				
 				$this->generateActivationEmail($email, $name_first, $name_last, $sha);
 				
-				return $this->_redirect('/register/activationsent/name/'.$name_first);
+				return $this->_redirect('/registerext/activationsent/name/'.$name_first);
     		}
     	}    	
     }
@@ -184,13 +199,13 @@ class ExtRegisterController extends Zend_Controller_Action
     	$html->assign('activation', $activation);
     	
     	// render view
-    	$bodyText = $html->render('activation.phtml');
+    	$bodyText = $html->render('activationext.phtml');
     	
     	$mail = new Zend_Mail('utf-8');
     	$mail->setBodyHtml($bodyText);
     	$mail->setFrom('noreply@tamuhack.com', 'No-Reply: TAMUHack');
     	$mail->addTo($email, $name_first." ".$name_last);
-    	$mail->setSubject('Activate your tamuHack account');
+    	$mail->setSubject('Activate your TAMUHack account');
     	$mail->send();
     }
     
@@ -235,14 +250,14 @@ class ExtRegisterController extends Zend_Controller_Action
     			else
     			{
     				$thRec->deleteEntry($email);
-    				$members = new Application_Model_TH_Members();
+    				$members = new Application_Model_Hack_Members();
     				
     				$sha = new Application_Model_TH_NanoSha256();
     				$pass = $sha->getSaltedHash(strtolower($email), $password);
     				
     				$members->editUser($email, array('pass' => $pass));
     				
-    				return $this->_redirect('/register/passwordset');
+    				return $this->_redirect('/registerext/passwordset');
     			}
     		}
     	}
@@ -267,11 +282,11 @@ class ExtRegisterController extends Zend_Controller_Action
     	{
     		$thActivate->deleteEntry($email);
     		
-    		$members = new Application_Model_TH_Members();
+    		$members = new Application_Model_Hack_Members();
     		
     		$members->editUser($email, array('email_verified' => 1));
     		
-    		return $this->_redirect('/register/accountactivated/email/'.$email);
+    		return $this->_redirect('/registerext/accountactivated/email/'.$email);
     	}
     	// activation doesn't exist
     	else
