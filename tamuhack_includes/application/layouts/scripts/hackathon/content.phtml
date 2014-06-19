@@ -76,45 +76,6 @@
 <!-- Page content generated below -->
 <div class="body">     
 
-	<!-- Primary nav menu -->
-	<?php if(isset($this->auth)): ?>
-        
-        <div class="portal_nav">
-	        <ul>
-	        	<?php 
-        		$uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); 
-        		
-        		/**
-					below
-					-to define a linked controller address, insert an array element in the form,
-						array("controllerName/node", "LINK-TITLE")
-					-to define an external address insert a link in the place of the controller and
-						include "http". 
-        		 */
-        		$portalLinks = array(
-							array("/portal", 		"PORTAL"), 
-							array("/events",		"EVENTS")
-						);
-
-				if($this->auth->account_type > 90)
-				{
-					array_push($portalLinks, array("/admin", "ADMIN"));
-				}
-
-        		foreach ($portalLinks as $item):
-        	?>
-        		<li<?php if($uri === $this->baseUrl($item[0])): ?> class="current"<?php endif;?>>
-        			<?php if(strpos($item[0],'http://') !== false){?>
-        				<a href="<?php echo $item[0]; ?>"target="_blank" ><?php echo $item[1]; ?></a>
-        			<?php }else{?>
-        				<a href="<?php echo $this->baseUrl($item[0]); ?>"><?php echo $item[1]; ?></a>
-        			<?php }?>
-        		</li>
-        	<?php endforeach; ?>
-	        </ul>
-        </div>
-	<?php endif; ?>
-
 	<div class="content">
 		<?php echo $this->layout()->content; ?>
 	</div>

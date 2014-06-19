@@ -1,8 +1,8 @@
 <h1 class="center">Recover your lost password</h1>
 <p class="center">Enter your email below and we will send you a link to recover your password.</p>
-<form class="form form_recover" action="<?php echo $this->baseUrl("/register/recover"); ?>" method="post">
+<form class="form form_recover" action="<?php echo $this->baseUrl("/registerext/recover"); ?>" method="post">
 	<label>
-		<span>*TAMU Email:</span>
+		<span>*Email:</span>
 		<?php if(isset($this->fields["email_error"])):?>
 		<span class="error"><?php echo $this->fields["email_error"];?></span>
 		<?php endif; ?>
