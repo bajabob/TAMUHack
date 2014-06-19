@@ -120,14 +120,13 @@ class RegisterextController extends Zend_Controller_Action
     		
     		$email = trim($request->getPost('email', ""));
     		$fields["email"] = $email;
-    		$lookup = stripos($email, "@tamu.edu");
-    		if($lookup === false)
+    		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
     		{
     			$hasError = true;
-    			$fields["email_error"] = "Not a valid email. Must be \"@tamu.edu\"!";
+    			$fields["email_error"] = "Not a valid email.";
     		}
     		
-    		$th = new Application_Model_TH_Members();
+    		$th = new Application_Model_Hack_Members();
     		
     		if(!$th->exists($email))
     		{
@@ -157,16 +156,16 @@ class RegisterextController extends Zend_Controller_Action
     			$html->assign('activation', $activation);
     			 
     			// render view
-    			$bodyText = $html->render('recoverpassword.phtml');
+    			$bodyText = $html->render('recoverpasswordext.phtml');
     			 
     			$mail = new Zend_Mail('utf-8');
     			$mail->setBodyHtml($bodyText);
     			$mail->setFrom('noreply@tamuhack.com', 'No-Reply: tamuHack');
     			$mail->addTo($email, $name_first." ".$name_last);
-    			$mail->setSubject('Recover your tamuHack account password');
+    			$mail->setSubject('Recover your TAMUHack account password');
     			$mail->send();
     			
-     			return $this->_redirect('/register/recoverysent/email/'.$email);
+     			return $this->_redirect('/registerext/recoverysent/email/'.$email);
 				
     		}
     	}
