@@ -69,7 +69,7 @@ class LoginController extends Zend_Controller_Action
     					}
     					else if($memberExt->checkCredentails($email, $password))
     					{
-    						$user = $member->getMember($email);
+    						$user = $memberExt->getMember($email);
     						$authNamespace = new Zend_Session_Namespace('Zend_Auth');
     						$authNamespace->id = $user['id'];
     						$authNamespace->email = $user['email'];
