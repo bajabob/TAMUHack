@@ -19,9 +19,20 @@
 		<input type="text" name="name_last" value="<?php echo $this->fields["name_last"];?>">
 	</label>
 	<label>
-		<span>School:</span>
+		<span>*School:</span>
+		<?php if(isset($this->fields["school_error"])):?>
+		<span class="error"><?php echo $this->fields["school_error"];?></span>
+		<?php endif; ?>
 		<input type="text" name="school" value="<?php echo $this->fields["school"];?>">
 	</label>
+	<label>
+		<span>*Your Previous Hackathon Experiences:</span>
+		<?php if(isset($this->fields["hack_xp_error"])):?>
+		<span class="error"><?php echo $this->fields["hack_xp_error"];?></span>
+		<?php endif; ?>
+		<textarea rows="4" cols="50" name="hack_xp" maxlength="500"><?php echo $this->fields["hack_xp"];?></textarea>
+	</label>
+	
 	<label>
 		<span>Expected Graduation Year (YYYY):</span>
 		<input type="text" name="grad_year" value="<?php echo $this->fields["grad_year"];?>">
@@ -29,6 +40,10 @@
 	<label>
 		<span>LinkedIn (Paste Entire Link):</span>
 		<input type="text" name="linkedin" value="<?php echo $this->fields["linkedin"];?>">
+	</label>
+	<label>
+		<span>Estimated Travel Reimbursement (&dagger;):</span>
+		<input type="text" name="travel_costs" value="<?php echo $this->fields["travel_costs"];?>">
 	</label>
 	<label>
 		<span>*Email:</span>
@@ -50,3 +65,5 @@
 		<span>(*) Required</span>
 	</label>
 </form>
+
+<p class="center">&dagger; - Please indicate your estimated travel costs. This includes gas, plane tickets, taxis, etc. Due to the high number of registrants we cannot guarantee travel reimbursements.</p>

@@ -25,7 +25,9 @@ class RegisterextController extends Zend_Controller_Action
     			"email" => "",
     			"grad_year"=> "",
     			"school" => "",
-    			"linkedin" => ""
+    			"linkedin" => "",
+    			"travel_costs" => "",
+    			"hack_xp" => ""
     	);
 
 
@@ -75,10 +77,26 @@ class RegisterextController extends Zend_Controller_Action
     		
     		$school = trim($request->getPost('school', ""));
     		$fields["school"] = $school;
+    		if(strlen($school) == 0)
+    		{
+    			$hasError = true;
+    			$fields["school_error"] = "Please enter your current school!";
+    		}
+    		
+    		$hackXp = trim($request->getPost('hack_xp', ""));
+    		$fields["hack_xp"] = $hackXp;
+    		if(strlen($hackXp) == 0)
+    		{
+    			$hasError = true;
+    			$fields["hack_xp_error"] = "Please list some of your previous hackathon experiences!";
+    		}
     		
     		$linkedin = trim($request->getPost('linkedin', ""));
     		$fields["linkedin"] = $linkedin;
 
+    		$travelCosts = trim($request->getPost('travel_costs', ""));
+    		$fields["travel_costs"] = $linkedin;
+    		
     		$th = new Application_Model_Hack_Members();
     		
     		if($th->exists($email))
@@ -96,7 +114,7 @@ class RegisterextController extends Zend_Controller_Action
 				$sha = new Application_Model_TH_NanoSha256();
 				$pass = $sha->getSaltedHash($email, $password);
 				
-				$th->createNewUser($name_first, $name_last, $email, $pass, $grad_year, $school, $linkedin);
+				$th->createNewUser($name_first, $name_last, $email, $pass, $grad_year, $school, $linkedin, $hackXp, $travelCosts);
 				
 				$this->generateActivationEmail($email, $name_first, $name_last, $sha);
 				

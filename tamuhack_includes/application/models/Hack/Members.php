@@ -9,7 +9,7 @@ class Application_Model_Hack_Members extends Zend_Db_Table_Abstract{
 	/**
 	* start the register process for a new user account
 	*/
-	public function createNewUser($first, $last, $email, $pass, $grad_year, $school, $linkedin){
+	public function createNewUser($first, $last, $email, $pass, $grad_year, $school, $linkedin, $hackXp, $travelCosts){
 	
 		$arr = array(
 				'account_type'	=> 0,
@@ -20,7 +20,9 @@ class Application_Model_Hack_Members extends Zend_Db_Table_Abstract{
 				'pass'			=> $pass,
 				'grad_year'		=> $grad_year,
 				'school'		=> $school,
-				'linkedin'		=> $linkedin
+				'linkedin'		=> $linkedin,
+				'hack_xp'		=> $hackXp,
+				'travel_costs'	=> $travelCosts
 		);
 	
 		return $this->insert($arr);

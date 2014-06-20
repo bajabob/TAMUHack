@@ -25,10 +25,24 @@
 	<script type="text/javascript">
 		tinymce.init({
 		    selector: "textarea",
-		    height : 600,
+		    height : 200,
 		    menubar : false,
 		    plugins: "link",
-		    link_title: true
+		    link_title: true,
+		    charLimit : 500, // this is a default value which can get modified later
+		    setup: function(editor) {
+		        editor.on('change', function(e) {
+		            //define local variables
+		            var tinymax, tinylen, htmlcount;
+		            //setting our max character limit
+		            tinymax = this.settings.charLimit;
+		            //grabbing the length of the curent editors content
+		            tinylen = this.getContent().length;
+		            if (tinylen > tinymax) {
+		                alert("You are limited to only 500 characters in your previous hackathon experience.");
+		            }
+		        });
+		    }
 		 });
 	</script>
 	
