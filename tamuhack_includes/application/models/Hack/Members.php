@@ -12,7 +12,7 @@ class Application_Model_Hack_Members extends Zend_Db_Table_Abstract{
 	public function createNewUser($first, $last, $email, $pass, $grad_year, $school, $linkedin, $hackXp, $travelCosts){
 	
 		$arr = array(
-				'account_type'	=> 0,
+				'account_type'	=> 50,
 				'email_verified'=> 0,
 				'is_accepted'	=> 0,
 			    'name_first'   	=> ucfirst($first),
