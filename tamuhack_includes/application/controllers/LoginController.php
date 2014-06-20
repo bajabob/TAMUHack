@@ -53,7 +53,7 @@ class LoginController extends Zend_Controller_Action
 
     			if($member->exists($email) || $memberExt->exists($email))
     			{
-    				if($member->hasVerifiedEmail($email) || $member->hasVerifiedEmail($email))
+    				if($member->hasVerifiedEmail($email) || $memberExt->hasVerifiedEmail($email))
     				{
     					if ($member->checkCredentails($email, $password))
     					{

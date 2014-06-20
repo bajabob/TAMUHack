@@ -444,3 +444,11 @@ body{
 	height:9em;
 }
 
+.icon-fade{
+opacity: 0.3;
+}
+
+.icon-fade:hover{
+-webkit-transition:opacity .3s ease-in-out;
+opacity: 1.0;
+}
