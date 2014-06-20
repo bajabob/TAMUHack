@@ -9,7 +9,7 @@ class AdminController extends Zend_Controller_Action
     	$auth = new Zend_Session_Namespace('Zend_Auth');
     	if(!isset($auth->id))
     	{
-    		return $this->_forward('/portal/logout');
+    		return $this->_forward('/logout');
     	}else if($auth->account_type < 90)
     	{
     		return $this->_redirect('/portal/invalidcreds');

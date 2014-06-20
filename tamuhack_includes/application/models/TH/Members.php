@@ -12,7 +12,7 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	public function createNewUser($first, $last, $email, $pass){
 	
 		$arr = array(
-				'account_type'	=> 0,
+				'account_type'	=> 10,
 				'email_verified'=> 0,
 				'rep'			=> 0,
 			    'name_first'   	=> ucfirst($first),

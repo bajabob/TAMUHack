@@ -4,13 +4,17 @@ class EventsController extends Zend_Controller_Action
 {
     public function init()
     {
-    	$this->_helper->layout()->setLayout("org");
+        $this->_helper->layout()->setLayout("org");
     	
     	$auth = new Zend_Session_Namespace('Zend_Auth');
     	if(!isset($auth->id))
     	{
-    		return $this->_redirect('/portal/logout');
-    	}else{
+    		return $this->_forward('/logout');
+    	}else if($auth->account_type < 10)
+    	{
+    		return $this->_redirect('/portal/invalidcreds');
+    	}
+    	else{
     		$this->view->auth = $auth;
     	}
     }

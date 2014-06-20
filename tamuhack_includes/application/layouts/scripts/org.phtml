@@ -73,7 +73,7 @@
         <div class="top_nav_login">
         	<?php if(isset($this->auth)): ?>
         	<a href="<?php echo $this->baseUrl("/portal"); ?>"><?php echo $this->auth->name; ?></a> | 
-        	<a href="<?php echo $this->baseUrl("/portal/logout"); ?>">Logout</a>
+        	<a href="<?php echo $this->baseUrl("/logout"); ?>">Logout</a>
         	<?php endif; ?>
         	
         	<?php if(!isset($this->auth)): ?>
@@ -95,7 +95,7 @@
 						include "http". 
         		 */
         		$uris = array(
-							array("/org", 				"HOME"), 
+							array("/org", 			"HOME"), 
 							array("/news",			"NEWS"),
 							array("/contact",	 	"CONTACT")
 						);
@@ -133,10 +133,13 @@
 						include "http". 
         		 */
         		$portalLinks = array(
-							array("/portal", 		"PORTAL"), 
-							array("/events",		"EVENTS")
+							array("/portal", 		"PORTAL")
 						);
 
+				if($this->auth->account_type > 10)
+				{
+					array_push($portalLinks, array("/events", "EVENTS"));
+				}
 				if($this->auth->account_type > 90)
 				{
 					array_push($portalLinks, array("/admin", "ADMIN"));

@@ -33,26 +33,13 @@
 		
     </head>
     <body>
-		<!--  
-		<div class="sidebar-frame">
-            <div class="sidebar">
-                <i class="fa fa-bars"></i>
-                <a href="index.html" class="logo"><img src="/images/hackathon/cube.png"/></a>
-                <div class="sidebar-menu">
-                    <div id="home-menu"><i class="fa fa-home fa-fw"></i><span>Home</span></div>
-                    <div id="faq-menu"><i class="fa fa-question fa-fw"></i><span>FAQ</span></div>
-                    <div id="sponsors-menu"><i class="fa fa-thumbs-up fa-fw"></i><span>Sponsors</span></div>
-                    <div id="contact-menu"><i class="fa fa-comments fa-fw"></i><span>Contact</span></div>
-                </div>
-            </div>
-        </div>
-         -->
         <div class="container">
             <div id="home" class="frame full-height home-img-bkg" data-stellar-background-ratio="0.5">
                 <div class="landing">
                     <div class="landing-inner">
                         <img src="/images/hackathon/tamuhack_logo.png">
                         <h1 class="main-header">The Lone Star Hackathon</h1>
+                        <br />
                         <a href="#faq" class="btn inner-btn first-btn" >Come Build With Us</a>
                     </div>
                 </div>
@@ -101,10 +88,19 @@
                     <a href="<?php echo $this->baseUrl("register"); ?>" class="btn-reg inner-btn first-btn" >TAMU Students</a>
                     <a href="<?php echo $this->baseUrl("registerext"); ?>" class="btn-reg inner-btn" >Non-TAMU Students</a>
                 </div>
-          		<div class="sub-frame">
-                	<p class="center">Event organized by TAMUHack&copy;, a student run organization at Texas A&M University.</p>
-            	</div>
             </div>
+        </div>
+        <div style="clear:both"></div>
+        <div class="footer">
+     	   	<p class="center">Event organized by TAMUHack&copy;, a student run organization at Texas A&M University.</p>
+     	   	<div class="center">
+     	   		<a href="http://facebook.com/tamuhack" target="_BLANK" >
+     	   			<img src="<?php echo $this->baseUrl("images/org/icons/fb.png"); ?>" class="icon-fade"/>
+     	   		</a>
+     	   		<a href="https://twitter.com/TAMUHack" target="_BLANK" >
+     	   			<img src="<?php echo $this->baseUrl("images/org/icons/twitter.png"); ?>" class="icon-fade" />
+     	   		</a>
+     	   	</div>
         </div>
     </body>
 </html>
