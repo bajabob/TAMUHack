@@ -105,16 +105,16 @@ class RegisterController extends Zend_Controller_Action
     		
     		$email = trim($request->getPost('email', ""));
     		$fields["email"] = $email;
-    		$lookup = stripos($email, "@tamu.edu");
-    		if($lookup === false)
+    		if(!filter_var($email, FILTER_VALIDATE_EMAIL))
     		{
     			$hasError = true;
-    			$fields["email_error"] = "Not a valid email. Must be \"@tamu.edu\"!";
+    			$fields["email_error"] = "Not a valid email";
     		}
     		
     		$th = new Application_Model_TH_Members();
+    		$thExt = new Application_Model_Hack_Members();
     		
-    		if(!$th->exists($email))
+    		if(!$th->exists($email) || !$thExt->exists($email))
     		{
     			// email is NOT already in system
     			$hasError = true;
@@ -236,11 +236,17 @@ class RegisterController extends Zend_Controller_Action
     			{
     				$thRec->deleteEntry($email);
     				$members = new Application_Model_TH_Members();
+    				$membersExt = new Application_Model_Hack_Members();
     				
     				$sha = new Application_Model_TH_NanoSha256();
     				$pass = $sha->getSaltedHash(strtolower($email), $password);
     				
-    				$members->editUser($email, array('pass' => $pass));
+    				if($members->exists($email)){
+    					$members->editUser($email, array('pass' => $pass));
+    				}
+    				if($membersExt->exists($email)){
+    					$membersExt->editUser($email, array('pass' => $pass));
+    				}
     				
     				return $this->_redirect('/register/passwordset');
     			}
@@ -268,8 +274,14 @@ class RegisterController extends Zend_Controller_Action
     		$thActivate->deleteEntry($email);
     		
     		$members = new Application_Model_TH_Members();
+    		$membersExt = new Application_Model_Hack_Members();
     		
-    		$members->editUser($email, array('email_verified' => 1));
+    		if($members->exists($email)){
+    			$members->editUser($email, array('email_verified' => 1));
+    		}
+    		if($membersExt->exists($email)){
+    			$membersExt->editUser($email, array('email_verified' => 1));
+    		}
     		
     		return $this->_redirect('/register/accountactivated/email/'.$email);
     	}

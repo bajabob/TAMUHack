@@ -1,0 +1,10 @@
+<body>
+	<h1>Welcome to TAMUHack!</h1>
+	<p>Howdy <?php echo $this->name; ?>!</p>
+	<p>We are thrilled that you are interested in attending our hackathon hosted in the heart of Aggieland! At this time we will review your application and send you an email when you are accepted. You can also check the status of your application at any time by logging into TAMUHack.com/login</p>
+	<p>Click the activation link below to complete your application.</p>
+	<p><a href="http://tamuhack.com<?php echo $this->baseUrl("/register/activate/email/".$this->email."/activation/".$this->activation); ?>"><h3>Activate Here</h3></a></p>
+	<p>-TAMUHack</p>
+	<p>If the activation link does not work, please copy and paste this link to your browser: 
+	http://tamuhack.com<?php echo $this->baseUrl("/register/activate/email/".$this->email."/activation/".$this->activation); ?></p>
+</body>
