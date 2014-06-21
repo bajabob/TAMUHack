@@ -27,6 +27,9 @@ class AdminController extends Zend_Controller_Action
     
     public function mailoutAction()
     {
+    	$this->view->tinymceHeight = 600;
+    	$this->view->tinymceCharLimit = 1500;
+    	
     	$request = $this->getRequest();
     	
     	/**

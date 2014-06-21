@@ -69,6 +69,10 @@ body{
 	color: red;
 }
 
+.green{
+	color: green;
+}
+
 
 
 /**
@@ -425,6 +429,13 @@ body{
 
 .form_register{
 	height:20em;
+}
+
+.form_registerext{
+	height:59em;
+}
+.form_registerext{
+	height:30em;
 }
 
 .form_recover{

@@ -23,13 +23,27 @@
 	<!-- WYSIWYG Editor -->
 	<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript">
-		tinymce.init({
-		    selector: "textarea",
-		    height : 600,
-		    menubar : false,
-		    plugins: "link",
-		    link_title: true
-		 });
+	tinymce.init({
+	    selector: "textarea",
+	    height : <?php echo $this->tinymceHeight; ?>,
+	    menubar : false,
+	    plugins: "link",
+	    link_title: true,
+	    charLimit : <?php echo $this->tinymceCharLimit; ?>,
+	    setup: function(editor) {
+	        editor.on('change', function(e) {
+	            //define local variables
+	            var tinymax, tinylen, htmlcount;
+	            //setting our max character limit
+	            tinymax = this.settings.charLimit;
+	            //grabbing the length of the curent editors content
+	            tinylen = this.getContent().length;
+	            if (tinylen > tinymax) {
+	                alert("You are limited to only 500 characters in your previous hackathon experience.");
+	            }
+	        });
+	    }
+	 });
 	</script>
 	
 	<script type="text/javascript">
@@ -136,11 +150,11 @@
 							array("/portal", 		"PORTAL")
 						);
 
-				if($this->auth->account_type > 10)
+				if($this->auth->account_type >= 10)
 				{
 					array_push($portalLinks, array("/events", "EVENTS"));
 				}
-				if($this->auth->account_type > 90)
+				if($this->auth->account_type >= 90)
 				{
 					array_push($portalLinks, array("/admin", "ADMIN"));
 				}

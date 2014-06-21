@@ -6,7 +6,7 @@ class RegisterextController extends Zend_Controller_Action
 
     public function init()
     {
-    	$this->_helper->layout()->setLayout("hackathon/content");
+    	$this->_helper->layout()->setLayout("org");
     	
     	$auth = new Zend_Session_Namespace('Zend_Auth');
     	if(isset($auth->id))
@@ -18,6 +18,9 @@ class RegisterextController extends Zend_Controller_Action
 
     public function indexAction()
     {
+    	$this->view->tinymceHeight = 200;
+    	$this->view->tinymceCharLimit = 500;
+    	
     	$request = $this->getRequest();
     	$fields = array(
     			"name_first" => "", 
@@ -97,7 +100,7 @@ class RegisterextController extends Zend_Controller_Action
     		$travelCosts = trim($request->getPost('travel_costs', ""));
     		$fields["travel_costs"] = $linkedin;
     		
-    		$th = new Application_Model_Hack_Members();
+    		$th = new Application_Model_TH_Members();
     		
     		if($th->exists($email))
     		{
@@ -113,8 +116,10 @@ class RegisterextController extends Zend_Controller_Action
 				// create account and generate email
 				$sha = new Application_Model_TH_NanoSha256();
 				$pass = $sha->getSaltedHash($email, $password);
+				$id = $th->createNewUser($name_first, $name_last, $email, $pass, 0);
 				
-				$th->createNewUser($name_first, $name_last, $email, $pass, $grad_year, $school, $linkedin, $hackXp, $travelCosts);
+				$application = new Application_Model_TH_Applications();
+				$application->createNewApplication($id, $grad_year, $school, $linkedin, $hackXp, $travelCosts);
 				
 				$this->generateActivationEmail($email, $name_first, $name_last, $sha);
 				
@@ -149,12 +154,6 @@ class RegisterextController extends Zend_Controller_Action
     	$mail->addTo($email, $name_first." ".$name_last);
     	$mail->setSubject('Activate your TAMUHack account');
     	$mail->send();
-    }
-    
-    public function accountactivatedAction()
-    {
-    	$request = $this->getRequest();
-    	$this->view->email = $request->getParam('email');
     }
 	
 	public function activationsentAction()

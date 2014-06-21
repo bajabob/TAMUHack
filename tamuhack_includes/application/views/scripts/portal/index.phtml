@@ -1,10 +1,54 @@
 <img src="<?php echo $this->baseUrl("images/org/portal/tamuhack_banner.jpg"); ?>" />
-<br /><br />
-<div class="center">
-	<a href="http://facebook.com/tamuhack" target="_BLANK" >
-    	<img src="<?php echo $this->baseUrl("images/org/icons/fb.png"); ?>" class="icon-fade"/>
-    </a>
-    <a href="https://twitter.com/TAMUHack" target="_BLANK" >
-    	<img src="<?php echo $this->baseUrl("images/org/icons/twitter.png"); ?>" class="icon-fade" />
-    </a>
-</div>
+
+<?php if(isset($this->application)): ?>
+<h1>Application: 
+<?php if($this->application->is_accepted == "1"):?>
+<span class="green">Accepted</span>
+<?php else: ?>
+<span class="error">Awaiting Approval</span>
+<?php endif;?>
+</h1>
+
+<h2>Hackathon Experience:</h2>
+<?php echo $this->application->hack_xp; ?>
+
+<h2>School:</h2>
+<p><?php echo $this->application->school; ?></p>
+
+<h2>LinkedIn:</h2>
+<p><?php echo $this->application->linkedin; ?></p>
+
+<h2>Expected Grad Date:</h2>
+<p><?php echo $this->application->grad_year; ?></p>
+
+<h2>Travel Costs:</h2>
+<p><?php echo $this->application->travel_costs; ?></p>
+
+<?php else: ?>
+<p class="center error">You have not filled out an application for TAMUHack 2014. To apply, fill out the form below.</p>
+
+
+<form class="form form_registerportal" action="<?php echo $this->baseUrl("/portal"); ?>" method="post">
+	<label>
+		<span>*Your Previous Hackathon Experiences:</span>
+		<?php if(isset($this->fields["hack_xp_error"])):?>
+		<span class="error"><?php echo $this->fields["hack_xp_error"];?></span>
+		<?php endif; ?>
+		<textarea rows="4" cols="50" name="hack_xp" maxlength="500"><?php echo $this->fields["hack_xp"];?></textarea>
+	</label>
+	<label>
+		<span>Expected Graduation Year (YYYY):</span>
+		<input type="text" name="grad_year" value="<?php echo $this->fields["grad_year"];?>">
+	</label>
+	<label>
+		<span>LinkedIn (Paste Entire Link):</span>
+		<input type="text" name="linkedin" value="<?php echo $this->fields["linkedin"];?>">
+	</label>
+	<br>
+	<input type="submit" value="Submit">
+	<label>
+		<span>(*) Required</span>
+	</label>
+</form>
+
+<?php endif; ?>

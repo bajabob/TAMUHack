@@ -9,10 +9,10 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	/**
 	* start the register process for a new user account
 	*/
-	public function createNewUser($first, $last, $email, $pass){
+	public function createNewUser($first, $last, $email, $pass, $accountType){
 	
 		$arr = array(
-				'account_type'	=> 10,
+				'account_type'	=> $accountType,
 				'email_verified'=> 0,
 				'rep'			=> 0,
 			    'name_first'   	=> ucfirst($first),

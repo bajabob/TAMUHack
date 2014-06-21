@@ -81,7 +81,7 @@ class RegisterController extends Zend_Controller_Action
 				$sha = new Application_Model_TH_NanoSha256();
 				$pass = $sha->getSaltedHash($email, $password);
 				
-				$th->createNewUser($name_first, $name_last, $email, $pass);
+				$th->createNewUser($name_first, $name_last, $email, $pass, 10);
 				
 				$this->generateActivationEmail($email, $name_first, $name_last, $sha);
 				
