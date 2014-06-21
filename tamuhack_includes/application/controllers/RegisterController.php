@@ -274,14 +274,8 @@ class RegisterController extends Zend_Controller_Action
     		$thActivate->deleteEntry($email);
     		
     		$members = new Application_Model_TH_Members();
-    		$membersExt = new Application_Model_Hack_Members();
     		
-    		if($members->exists($email)){
-    			$members->editUser($email, array('email_verified' => 1));
-    		}
-    		if($membersExt->exists($email)){
-    			$membersExt->editUser($email, array('email_verified' => 1));
-    		}
+    		$members->editUser($email, array('email_verified' => 1));
     		
     		return $this->_redirect('/register/accountactivated/email/'.$email);
     	}
