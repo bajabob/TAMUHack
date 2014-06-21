@@ -6,6 +6,7 @@
 		<td style="width:150px;">First Name</td>
 		<td style="width:150px;">Last Name</td>
 		<td style="width:150px;">Email Verified</td>
+		<td style="width:150px;">Permission Level</td>
 	</tr>
 	<?php foreach($this->members as $member): ?>
 		<tr>
@@ -18,7 +19,13 @@
 				<span class="error">No</span>
 				<?php endif; ?>
 			</td>
+			<td><?php echo $member->account_type;?></td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 </p>
+<ul>
+	<li>99 - Admin</li>
+	<li>10 - TAMU Student</li>
+	<li>0 - Non-TAMU Student</li>
+</ul>
