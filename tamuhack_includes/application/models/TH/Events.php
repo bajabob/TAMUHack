@@ -23,6 +23,7 @@ class Application_Model_TH_Events extends Zend_Db_Table_Abstract
 	{
 		$rows = $this->fetchAll(
 				$this->select()
+				->order("date ASC")
 		);
 		return $rows;
 	}

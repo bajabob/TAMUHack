@@ -40,13 +40,20 @@ class AdminController extends Zend_Controller_Action
     		$members = new Application_Model_TH_Members();
     		$people = $members->getAll();
     		
+    		$emailTo = $request->getPost("email_to");
+    		
     		$mail = new Zend_Mail('utf-8');
     		$mail->setBodyHtml($request->getPost("body"));
     		$mail->setFrom('noreply@tamuhack.com', 'No-Reply: TAMUHack');
     		$mail->addTo("support@tamuhack.com");
+    		
+    		$test = array();
     		foreach($people as $person)
     		{
-    			$mail->addBcc($person->email);
+    			if($person->account_type == $emailTo || $emailTo == -1)
+    			{
+    				$mail->addBcc($person->email);
+    			}
     		}
     		$mail->setSubject($request->getPost("subject"));
     		$mail->send();

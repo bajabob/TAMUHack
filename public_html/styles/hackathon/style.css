@@ -12,6 +12,12 @@ height:100%;
     margin-right: auto
 }
 
+.login{
+	margin-top:20px;
+	margin-right:20px;
+	float:right;
+	color:white;
+}
 
 .landing {
 display:block;
@@ -110,6 +116,7 @@ margin-right:auto;
 
 a {
 text-decoration:none;
+color:#b9a96e;
 }
 
 a.email {
@@ -142,6 +149,10 @@ background-color:#500000;
 
 .container .frame .blue-bkg {
 background-color:#055163;
+}
+
+.container .frame .tan-bkg {
+background-color:#f4af00;
 }
 
 .container .frame .header-bkg {
