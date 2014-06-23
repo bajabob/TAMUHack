@@ -50,7 +50,7 @@ class AdminController extends Zend_Controller_Action
     		$test = array();
     		foreach($people as $person)
     		{
-    			if($person->account_type == $emailTo || $emailTo == -1)
+    			if($person->account_type == $emailTo || $emailTo == -1 || $person->account_type >= 90)
     			{
     				$mail->addBcc($person->email);
     			}
