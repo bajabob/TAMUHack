@@ -190,7 +190,7 @@ class RegisterController extends Zend_Controller_Action
     	$mail->setBodyHtml($bodyText);
     	$mail->setFrom('noreply@tamuhack.com', 'No-Reply: TAMUHack');
     	$mail->addTo($email, $name_first." ".$name_last);
-    	$mail->setSubject('Activate your tamuHack account');
+    	$mail->setSubject('Activate your TAMUHack account');
     	$mail->send();
     }
     
