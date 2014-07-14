@@ -65,6 +65,12 @@ class ReactivateController extends Zend_Controller_Action
 		    	$mail->addTo($email, $name_first." ".$name_last);
 		    	$mail->setSubject('Activate your TAMUHack account');
 		    	$mail->send();
+		    	
+		    	return $this->_redirect('/register/activationsent/name/'.$user->name_first);
+    		}else 
+    		{
+    			$fields["error"] = "Email not in system.";
+    			$this->view->fields = $fields;
     		}
     	}
     }
