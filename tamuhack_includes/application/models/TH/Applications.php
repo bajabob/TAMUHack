@@ -23,6 +23,27 @@ class Application_Model_TH_Applications extends Zend_Db_Table_Abstract{
 	
 		return $this->insert($arr);
 	}
+	
+	
+	public function getAllWithMembers()
+	{
+// 		SELECT th_applications.school, th_applications.linkedin, th_applications.grad_year, th_applications.travel_costs, th_applications.hack_xp, th_applications.is_accepted, th_members.name_first, th_members.name_last, th_members.email
+// 		FROM th_members
+// 		INNER JOIN th_applications
+// 		ON th_applications.id=th_members.id;
+
+		$rows = $this->_db->query(
+			"SELECT th_applications.school, th_applications.linkedin, th_applications.grad_year, 
+				th_applications.travel_costs, th_applications.hack_xp, th_applications.is_accepted, 
+				th_members.name_first, th_members.name_last, th_members.email
+			FROM th_members
+			INNER JOIN th_applications
+			ON th_applications.id=th_members.id;"
+		);
+
+		
+		return $rows;
+	}
     
 	
 	/**

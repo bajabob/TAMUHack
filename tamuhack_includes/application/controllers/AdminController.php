@@ -125,4 +125,11 @@ class AdminController extends Zend_Controller_Action
 	
 	public function howtoAction(){}
 	
+	public function applicationsAction()
+	{
+		$applications = new Application_Model_TH_Applications();
+		
+		$this->view->applications  = $applications->getAllWithMembers();
+	}
+	
 }

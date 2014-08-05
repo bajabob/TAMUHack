@@ -1,0 +1,59 @@
+
+
+<table id="applications_table" class="display" cellspacing="0" width="100%" style="table-layout:fixed;">
+	<thead>
+            <tr>
+                <th width="15%">Name</th>
+                <th width="15%">School</th>
+                <th width="10%">LinkedIn</th>
+                <th width="5%">Grad Year</th>
+                <th width="10%">Travel Costs</th>
+                <th width="10%">Hack Experience</th>
+                <th width="10%">Accepted?</th>
+            </tr>
+        </thead>
+
+        <tbody>
+         <?php 
+         	$i = 0;
+         	foreach($this->applications as $app): 
+         ?>
+            <tr>
+                <td><?php echo $app['name_first'] . " " . $app['name_last']; ?></td>
+                <td><?php echo $app['school']; ?></td>
+                <td><a href="<?php echo $app['linkedin']; ?>" target="_blank">Link</a></td>
+                <td><?php echo $app['grad_year']; ?></td>
+                <td><?php echo (strpos($app['travel_costs'], 'http') !== false) ? "" : $app['travel_costs']; ?></td>
+                <td>
+	                <div class="tiptext">Hover
+						<div class="description"><?php echo strip_tags($app['hack_xp'], "<a><p><li><ul><ol>"); ?></div>
+					</div>
+                </td>
+                <td><?php echo ($app['is_accepted']) ? "Yes" : "No"; ?></td>
+            </tr>
+         <?php 
+         	$i++;
+         	endforeach; 
+         ?>
+         </tbody>
+            
+</table>
+
+<div class="spacer"></div>
+
+<script type="text/javascript">
+	$(document).ready(function() 
+	{
+	    $('#applications_table').dataTable(
+	   	{
+	   		"bAutoWidth": false // Disable the auto width calculation 
+	  
+		});
+
+	    $(".tiptext").mouseover(function() {
+	        $(this).children(".description").show();
+	    }).mouseout(function() {
+	        $(this).children(".description").hide();
+	    });
+	} );
+</script>
