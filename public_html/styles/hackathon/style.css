@@ -233,3 +233,8 @@ opacity: 0.3;
 -webkit-transition:opacity .3s ease-in-out;
 opacity: 1.0;
 }
+
+#sponsor-pic{
+	width: 100%;
+	position: relative;
+}
