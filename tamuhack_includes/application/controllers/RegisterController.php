@@ -85,6 +85,13 @@ class RegisterController extends Zend_Controller_Action
 				
 				$this->generateActivationEmail($email, $name_first, $name_last, $sha);
 				
+				$mc = new Mailchimp("398f08e6e69a3fa86638a205cba2ca95-us9");
+				$mc->call("/lists/subscribe", array(
+						"id" => "47a0fc88db",
+						"send_welcome" => false,
+						"email" => array("email" => $email)
+				));
+				
 				return $this->_redirect('/register/activationsent/name/'.$name_first);
     		}
     	}    	
