@@ -1,5 +1,7 @@
 <?php
 
+require_once "Zend/Mailchimp.php";
+
 class RegisterController extends Zend_Controller_Action
 {
 
