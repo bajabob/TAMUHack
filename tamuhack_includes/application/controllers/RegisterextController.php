@@ -130,6 +130,7 @@ class RegisterextController extends Zend_Controller_Action
 				$mc->call("/lists/subscribe", array(
 						"id" => "10d1d88568",
 						"send_welcome" => false,
+						"double_optin" => false,
 						"email" => array("email" => $email)
 				));
 				
