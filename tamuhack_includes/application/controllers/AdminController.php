@@ -32,6 +32,33 @@ class AdminController extends Zend_Controller_Action
     	
     }
     
+    public function tamuemailsAction()
+    {
+    	$members = new Application_Model_TH_Members();
+    	$rows = $members->getByAccountType(99);
+    	foreach($rows as $row)
+    	{
+    		echo $row->email ."<br>";
+    	}
+    	
+    	$rows = $members->getByAccountType(10);
+    	foreach($rows as $row)
+    	{
+    		echo $row->email ."<br>";
+    	}
+    	die;
+    }
+    
+    public function nontamuemailsAction()
+    {
+    	$members = new Application_Model_TH_Members();
+    	$rows = $members->getByAccountType(0);
+    	foreach($rows as $row)
+    	{
+    		echo $row->email ."<br>";
+    	}die;
+    }
+    
 
 	public function membersAction()
 	{

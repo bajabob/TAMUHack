@@ -143,4 +143,13 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 		return $rows;
 	}
 	
+
+	public function getByAccountType($id){
+		$rows = $this->fetchAll(
+				$this->select()
+				->where('account_type = ?', $id)
+		);
+		return $rows;
+	}
+	
 }
