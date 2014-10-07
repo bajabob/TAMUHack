@@ -10,6 +10,7 @@
 <pre id="console"></pre>
  
  
+
 <script type="text/javascript">
 // Custom example logic
  
@@ -22,9 +23,8 @@ var uploader = new plupload.Uploader({
     url : "<?php echo $this->baseUrl('resume/upload');?>",
      
     filters : {
-        max_file_size : '10mb',
+        max_file_size : '8mb',
         mime_types: [
-            {title : "Image files", extensions : "jpg,gif,png"},
             {title : "PDF files", extensions : "pdf"}
         ]
     },

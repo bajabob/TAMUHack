@@ -62,7 +62,8 @@ class ResumeController extends Zend_Controller_Action
     	// usleep(5000);
     	
     	// Settings
-    	$targetDir = ini_get("upload_tmp_dir") . DIRECTORY_SEPARATOR . "plupload";
+    	//$targetDir = ini_get("upload_tmp_dir") . DIRECTORY_SEPARATOR . "plupload";
+    	$targetDir = $_SERVER['DOCUMENT_ROOT'] . "/../tamuhack_includes/application/uploads/resumes";
     	//$targetDir = 'uploads';
     	$cleanupTargetDir = true; // Remove old files
     	$maxFileAge = 5 * 3600; // Temp file age in seconds
@@ -82,7 +83,14 @@ class ResumeController extends Zend_Controller_Action
     		$fileName = uniqid("file_");
     	}
     	
-    	$filePath = $targetDir . DIRECTORY_SEPARATOR . $fileName;
+    	$ext = pathinfo($fileName, PATHINFO_EXTENSION);
+    	
+    	if(strtolower($ext) != "pdf")
+    	{
+    		die('{"jsonrpc" : "2.0", "error" : {"code": 100, "message": "Bad file extension!."}, "id" : "id"}');
+    	}
+    	
+    	$filePath = $targetDir . DIRECTORY_SEPARATOR . time()."_".$fileName;
     	
     	// Chunking might be enabled
     	$chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
