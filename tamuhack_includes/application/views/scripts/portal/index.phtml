@@ -2,27 +2,10 @@
 
 <?php if(isset($this->application)): ?>
 <h1>Application: 
-<?php if($this->application->is_accepted == "1"):?>
 <span class="green">Accepted</span>
-<?php else: ?>
-<span class="error">Awaiting Approval</span>
-<?php endif;?>
 </h1>
 
-<h2>Hackathon Experience:</h2>
-<?php echo $this->application->hack_xp; ?>
-
-<h2>School:</h2>
-<p><?php echo $this->application->school; ?></p>
-
-<h2>LinkedIn:</h2>
-<p><?php echo $this->application->linkedin; ?></p>
-
-<h2>Expected Grad Date:</h2>
-<p><?php echo $this->application->grad_year; ?></p>
-
-<h2>Travel Costs:</h2>
-<p><?php echo $this->application->travel_costs; ?></p>
+<h3><a href="https://tamuhack2014.typeform.com/to/Vwrfd6">Please Accept Your Application Here</a></h3>
 
 <?php else: ?>
 <p class="center error">You have not filled out an application for TAMUHack 2014. To apply, fill out the form below.</p>
