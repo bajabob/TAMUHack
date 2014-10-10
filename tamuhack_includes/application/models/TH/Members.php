@@ -13,7 +13,7 @@ class Application_Model_TH_Members extends Zend_Db_Table_Abstract{
 	
 		$arr = array(
 				'account_type'	=> $accountType,
-				'email_verified'=> 0,
+				'email_verified'=> 1,
 				'rep'			=> 0,
 			    'name_first'   	=> ucfirst($first),
 				'name_last'     => ucfirst($last),

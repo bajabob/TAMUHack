@@ -9,7 +9,7 @@ class PortalController extends Zend_Controller_Action
     	$auth = new Zend_Session_Namespace('Zend_Auth');
     	if(!isset($auth->id))
     	{
-    		return $this->_forward('logout');
+    		return $this->_redirect('logout');
     	}else{
     		$this->view->auth = $auth;
     	}
@@ -68,6 +68,7 @@ class PortalController extends Zend_Controller_Action
     	
     	$this->view->application = $application;
     }
+    
 
     public function logoutAction()
     {

@@ -114,11 +114,12 @@ body{
 	text-decoration:none;
 }
 .top_nav_menu_logo{
-	width:450px;
-	height:83px;
+	width:100px;
+	height:94px;
 	float:left;
 	margin-top:10px;
-	background:url("../../images/org/tamuhack_logo_web.png") no-repeat;
+	margin-left:50px;
+	background:url("../../images/org/cube.png") no-repeat;
 }
 .top_nav_menu{
 	list-style:none;
