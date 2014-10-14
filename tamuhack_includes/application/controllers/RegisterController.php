@@ -122,9 +122,9 @@ class RegisterController extends Zend_Controller_Action
     		}
     		
     		$th = new Application_Model_TH_Members();
-    		$thExt = new Application_Model_Hack_Members();
+    		//s$thExt = new Application_Model_Hack_Members();
     		
-    		if(!$th->exists($email) || !$thExt->exists($email))
+    		if(!$th->exists($email))
     		{
     			// email is NOT already in system
     			$hasError = true;
