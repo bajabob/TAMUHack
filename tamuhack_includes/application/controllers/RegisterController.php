@@ -246,16 +246,12 @@ class RegisterController extends Zend_Controller_Action
     			{
     				$thRec->deleteEntry($email);
     				$members = new Application_Model_TH_Members();
-    				$membersExt = new Application_Model_Hack_Members();
     				
     				$sha = new Application_Model_TH_NanoSha256();
     				$pass = $sha->getSaltedHash(strtolower($email), $password);
     				
     				if($members->exists($email)){
     					$members->editUser($email, array('pass' => $pass));
-    				}
-    				if($membersExt->exists($email)){
-    					$membersExt->editUser($email, array('pass' => $pass));
     				}
     				
     				return $this->_redirect('/register/passwordset');
