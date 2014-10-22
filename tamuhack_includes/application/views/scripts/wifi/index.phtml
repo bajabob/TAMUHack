@@ -1,0 +1,14 @@
+<h1>Event Wifi</h1>
+<h3>TAMU Students, connect using the <a href="http://nis.tamu.edu/Networking/Wireless_Connections/Tamulink.php">standard method</a></h3>
+
+<h3>Non-TAMU Students</h3>
+<p>Our campus Wifi policy is to assign individual network logins for each user. Once you are issued a login key you may not share it with anyone under any circumstance. If your login is flagged for suspicious use you will be held responsible. In order to receive a login and password, we must first verify your identity. Enter your email below after clicking, "I need a code". We will then email you a code, enter that code in "I have a code" to get your login.</p> 
+
+<a href="<?php echo $this->baseUrl("wifi/sendcode"); ?>">
+	<img src="<?php echo $this->baseUrl("images/org/wifi/need_code.jpg"); ?>"  id="center"/>
+</a>
+
+<a href="<?php echo $this->baseUrl("wifi/genwifi"); ?>">
+	<img src="<?php echo $this->baseUrl("images/org/wifi/have_code.jpg"); ?>" id="center"/>
+</a>
+

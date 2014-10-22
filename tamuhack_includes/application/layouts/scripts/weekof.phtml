@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TAMUHack - Fall 2014</title>
+        
+        <meta name="title" content="TAMUHack" />
+		<meta name="author" content="TAMUHack | tamuhack.com" />
+		<meta name="keywords" content="texas A&M hackathon, texas A&M hack, tamuhack, hackathon, hackathons, student organization, computer science" />
+		<meta name="description" content="Est. 2014" />
+
+		<link rel="stylesheet" href="<?php echo $this->baseUrl("styles/hackathon/style.css"); ?>" type="text/css" media="screen" />
+		<link rel="stylesheet" href="<?php echo $this->baseUrl("styles/hackathon/typography.css"); ?>" type="text/css" media="screen" />
+        
+        <meta charset="utf-8">
+        <meta name="description" content="TAMUHack - The college hackathon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
+        
+		<!-- Google Tracking -->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-51779003-1', 'tamuhack.com');
+		  ga('send', 'pageview');
+		</script>
+		
+		
+    </head>
+    <body>
+
+        <div class="container">
+           <div id="home" class="frame full-height home-img-bkg" data-stellar-background-ratio="0.5">
+           		<a href="<?php echo $this->baseUrl("login"); ?>" class="login" >login</a>
+                <div class="landing">
+                    <div class="landing-inner">
+                        <img src="/images/hackathon/tamuhack_logo.png">
+                        <h1 class="main-header">The Lone Star Hackathon</h1>
+                        <br />
+                        <a href="#faq" class="btn inner-btn first-btn" >it is so on</a>
+                 
+                    </div>
+                </div>
+            </div>
+         
+			<div id="faq" class="frame faq-frame">
+                <div class="header-bkg maroon-bkg">
+                    <h1>FAQ</h1>
+                    <h3>One of the largest campuses in the world, you're going to need some directions</h3>
+                </div>
+                <div class="sub-frame">
+              		<h2>When is TAMUHack?</h2>
+              		<p>Event sign in starts at 4:00pm (CDT) in Rudder Auditorium. If you need to show up later, no problem. TAMUHack will then kick off with the opening ceremonies at 6:00pm. At that time there will be a leading tech industry guest speaker, API Demos, and some formal stuff before we break to start the hack. This overnight hack will take place at the heart of Texas A&M University overlooking some of the best views of campus. </p>
+              		<p>
+              			<ul>
+              				<li><strong>Oct 24th</strong></li>
+              				<li>4-6pm: Event Registration, Rudder Auditorium (<a href="http://aggiemap.tamu.edu/?Bldg=0446" target="_blank">map</a>)</li>
+              				<li>6pm: Opening Ceremonies</li>
+              				<li>7pm: Hacking Begins</li>
+              				<li>9pm: Dinner</li>
+              				<li><strong>Oct 25th</strong></li>
+              				<li>12am-5:30pm: Tons of food, tech talks, prizes, games and hacking.</li>
+              				<li>6pm: Dinner</li>
+              				<li>7pm: Event Judging</li>
+              				<li>8pm: Prizes Announced, Sleep o_o</li>
+              			</ul>
+              		</p>
+              		<h2>Where do I park?</h2>
+              		<p>University Center Garage - about a 3 minute walk, just south of the event (<a href="http://aggiemap.tamu.edu/?cat=pk&idn=87" target="_blank">map</a>)</p>
+              		<h2>Who can attend TAMUHack?</h2>
+              		<p>Sorry! Registration is closed for TAMUHack 2014</p>
+              		<h2>What do I need to bring?</h2>
+              		<p>Bring a laptop and charger. Some students also like to bring a sleeping bag, pillow, power strip, and toiletries. Cosse & Silmon have provided us with free pre-pasted toothbrushes.</p>
+              		<h2>What is not allowed at the event?</h2>
+              		<p>We cannot allow the use of soldering (or similar) equipment in the event building. Also, please do not bring firearms or other weapons, alcohol, illegal drugs, or animals.</p>
+              		<h2>What is the cost?</h2>
+              		<p>TAMUHack is free. We will provide all the meals, snacks, fruit, energy drinks, swag, and even a place to crash when you need a break.</p>
+              		<h2>Under 18?</h2>
+              		<p>Please have a legal guardian sign <a href="<?php echo $this->baseUrl("downloads/tamuhack-liability.pdf"); ?>" target="_blank">this waiver</a> before attending the event.</p>
+              		<h2>What are the prizes?</h2>
+              		<p>It's a long list, we'll get it up soon, promise!</p>
+                </div>
+            </div>           
+         
+         	
+            <div id="sponsors" class="frame">
+                <div class="header-bkg tan-bkg">
+                    <h1 class="sponsors">SPONSORS</h1>
+                    <h3 class="sponsors">The industry leading innovators that make TAMUHack possible</h3>
+                </div>
+                <div class="sub-frame">
+                	<img src="<?php echo $this->baseUrl("images/sponsors.jpg"); ?>" id="sponsor-pic" />
+                    <!-- <p class="center">Interested in sponsoring TAMUHack 2014? Take a look at our <a href="<?php echo $this->baseUrl("downloads/sponsor_tamuhack_2014.pdf"); ?>" >sponsorship guidelines</a>.</p>-->
+                </div>
+            </div>
+           
+             
+            <!--<div id="apply" class="frame">
+                <div class="header-bkg blue-bkg">
+                    <h1 class="sponsors">REGISTER</h1>
+                    <h3 class="sponsors">Sign up for the event and stay in touch</h3>
+                    <a href="<?php echo $this->baseUrl("register"); ?>" class="btn-reg inner-btn first-btn" >TAMU Students</a>
+                    <a href="<?php echo $this->baseUrl("registerext"); ?>" class="btn-reg inner-btn" >Non-TAMU Students</a>
+                </div>
+            </div>-->
+             
+             
+        </div>
+        <div style="clear:both"></div>
+        <div class="footer">
+     	   	<p class="center">Event organized by TAMUHack&copy;, a student run organization at Texas A&M University.</p>
+     	   	<div class="center">
+     	   		<a href="http://facebook.com/tamuhack" target="_BLANK" >
+     	   			<img src="/images/org/icons/fb.png" class="icon-fade"/>
+     	   		</a>
+     	   		<a href="https://twitter.com/TAMUHack" target="_BLANK" >
+     	   			<img src="/images/org/icons/twitter.png" class="icon-fade" />
+     	   		</a>
+     	   	</div>
+        </div>
+    </body>
+</html>

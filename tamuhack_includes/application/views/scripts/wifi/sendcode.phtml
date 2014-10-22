@@ -1,0 +1,28 @@
+<?php if(isset($this->success)):?>
+<h2 class="center">Email sent! <a href="<?php echo $this->baseUrl("wifi/genwifi"); ?>">Enter your email code here</a></h2>
+<?php else: ?>
+<h2 class="center">Please enter your full name and school email below.</h2>
+<br>
+<p class="center">We will generate a secret 8 digit code and email it to your school email provided below.</p>
+<form class="form form_sendcode" action="<?php echo $this->baseUrl("wifi/sendcode"); ?>" method="post">
+	<label>
+		<span>Name (First and Last):</span>
+		<?php if(isset($this->fields["name_error"])):?>
+		<span class="error"><?php echo $this->fields["name_error"];?></span>
+		<?php endif; ?>
+		<input type="text" name="name" value="<?php echo $this->fields["name"];?>">
+	</label>
+	<label>
+		<span>School Email (.edu):</span>
+		<?php if(isset($this->fields["email_error"])):?>
+		<span class="error"><?php echo $this->fields["email_error"];?></span>
+		<?php endif; ?>
+		<input type="text" name="email" value="<?php echo $this->fields["email"];?>">
+	</label>
+	<br>
+	<input type="submit" value="Submit">
+	<label>
+		<span>All Fields Are Required</span>
+	</label>
+</form>
+<?php endif; ?>
