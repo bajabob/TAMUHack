@@ -442,6 +442,10 @@ body{
 form_sendcode{
 	height: 10em;
 }
+form_sendcode{
+	height: 7em;
+}
+
 
 .form_recover{
 	height:9em;

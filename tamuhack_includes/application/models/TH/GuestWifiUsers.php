@@ -18,18 +18,12 @@ class Application_Model_TH_GuestWifiUsers extends Zend_Db_Table_Abstract
 	
 		return $this->insert($arr);
 	}
-	
-	
-	/**
-	 *
-	 * @param string $email
-	 * @return bool
-	 */
-	public function exists($event_id, $member_id){
+
+	public function codeExists($code)
+	{
 		$row = $this->fetchRow(
 				$this->select()
-				->where('event_id = ?', $event_id)
-				->where('member_id = ?', $member_id)
+				->where('code = ?', $code)
 		);
 		if($row !== null){
 			return true;
@@ -37,13 +31,35 @@ class Application_Model_TH_GuestWifiUsers extends Zend_Db_Table_Abstract
 		return false;
 	}
 	
-
-	public function getAllForEvent($event_id){
-		$rows = $this->fetchAll(
+	
+	public function hasSeenCode($code)
+	{
+		$row = $this->fetchRow(
 				$this->select()
-				->where('event_id = ?', $event_id)
+				->where('code = ?', $code)
+				->where('showncode = ?', 1)
 		);
-		return $rows;
+		if($row !== null){
+			return true;
+		}
+		return false;	
+	}
+	
+	
+	/**
+	 * Edit event
+	 * @param string $event_id
+	 * @param array $arr
+	 *
+	 */
+	public function shownCode($code, $wifiCodeId){
+		$arr = array(
+				"wifi_code_id" 	=> $wifiCodeId,
+				"showncode"		=> 1
+		);
+		
+		$where = $this->getAdapter()->quoteInto('code = ?', $code);
+		return $this->update($arr, $where);
 	}
 	
 }

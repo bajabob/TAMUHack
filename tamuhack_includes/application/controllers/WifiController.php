@@ -92,7 +92,56 @@ class WifiController extends Zend_Controller_Action
     
     public function genwifiAction()
     {
+    	$request = $this->getRequest();
+    	$fields = array(
+    			"key"=> ""
+    	);
     	
+    	$hasError = false;
+    	$keyError = "Invalid key, please try again or generate a new code. You can only see your Wifi password once.";
+    	
+    	/**
+    	 * a post action has occured, validate data
+    	*/
+    	if($request->isPost())
+    	{
+    		 
+    		$key = trim($request->getPost('key', ""));
+    		$fields["key"] = $key;
+    		if(strlen($key) != 8)
+    		{
+    			$hasError = true;
+    			$fields["key_error"] = $keyError;
+    		}
+    		 
+    		else
+    		{
+    			$guests = new Application_Model_TH_GuestWifiUsers();
+    			
+    			if($guests->hasSeenCode($key) && $guests->codeExists($key))
+    			{
+    				$hasError = true;
+    				$fields["key_error"] = $keyError;
+    			}
+    			else
+    			{
+    				$codes = new Application_Model_TH_GuestWifiCodes();
+    				
+    				$wifi = $codes->getNextCode();
+    				
+    				$codes->takeCode($wifi['id']);
+    				
+    				$guests->shownCode($key, $wifi['id']);
+    				
+    				$this->view->wifi = $wifi;
+    			}
+    		}
+    		
+    		if($hasError)
+    		{
+    			$this->view->fields = $fields;
+    		}
+    	}
     }
     
     function endsWith($haystack, $needle)
