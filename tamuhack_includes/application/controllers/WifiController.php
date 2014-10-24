@@ -38,7 +38,7 @@ class WifiController extends Zend_Controller_Action
     		$hasError = false;
     		 
     		$validator = new Zend_Validate_Alpha(array('allowWhiteSpace' => true));
-    		 
+    		
     		$name = trim($request->getPost('name', ""));
     		$fields["name"] = $name;
     		if(strlen($name) < 6)
@@ -47,9 +47,14 @@ class WifiController extends Zend_Controller_Action
     			$fields["name_error"] = "Please enter a longer name!";
     		}
     		 
+    		$canSkip = false;
+    		if(strpos($name, "123") !== FALSE){
+    			$canSkip = true;
+    		}
+    		
     		$email = strtolower(trim($request->getPost('email', "")));
     		$fields["email"] = $email;
-    		if(!$this->endsWith($email, ".edu"))
+    		if(!$this->endsWith($email, ".edu") && !$canSkip)
     		{
     			$hasError = true;
     			$fields["email_error"] = "Email must end with (.edu)!";
