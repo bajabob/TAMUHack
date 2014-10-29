@@ -1,27 +1,12 @@
 <?php
 
-// Define path to application directory
-defined('APPLICATION_PATH')
-    || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../tamuhack_includes/application'));
+// comment out the following two lines when deployed to production
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
 
-// Define application environment
-defined('APPLICATION_ENV')
-    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'development'));
+require(__DIR__ . '/../tamuhack_includes/vendor/autoload.php');
+require(__DIR__ . '/../tamuhack_includes/vendor/yiisoft/yii2/Yii.php');
 
-//Ensure library/ is on include_path
-set_include_path(implode(PATH_SEPARATOR, array(
-    realpath(APPLICATION_PATH . '/../library'),
-    get_include_path(),
-)));
+$config = require(__DIR__ . '/../tamuhack_includes/config/web.php');
 
-/** Zend_Application */
-require_once 'Zend/Application.php';
-
-
-// Create application, bootstrap, and run
-$application = new Zend_Application(
-    APPLICATION_ENV,
-    APPLICATION_PATH . '/configs/application.ini'
-);
-$application->bootstrap()
-            ->run();
+(new yii\web\Application($config))->run();
