@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=tamuhack_db',
+    'username' => 'tamuhack_db',
+    'password' => 'dTb5hByCNW3zw54T',
+    'charset' => 'utf8',
+];
