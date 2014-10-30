@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\ThMembers;
 
 class SiteController extends Controller
 {
@@ -49,6 +50,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+//     	$th = new ThMembers();
+//     	$result = $th->verifyPassword("bobtimm@tamu.edu", "r3propeller");
+    	
         return $this->render('index');
     }
 
