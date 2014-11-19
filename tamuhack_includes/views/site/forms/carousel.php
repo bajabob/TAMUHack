@@ -1,5 +1,7 @@
 <?php
 	use yii\helpers\Url;
+	
+	$this->registerCssFile("css/carousel.css");
 ?>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -11,9 +13,11 @@
     </ol>
     
     <div class="carousel-inner">
+    
         <div class="item active">
-          	<img src="<?php echo Url::to('images/carousel/0.jpg'); ?>">
+          	
           	<div class="container">
+          	<img src="<?php echo Url::to('images/carousel/0.jpg'); ?>">
             	<div class="carousel-caption">
               		<h1>it's not just an event.</h1>
               		<p>it's tech revolution that every student should experience at least once.</p>
