@@ -4,8 +4,8 @@
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
-require(__DIR__ . '/../tamuhack_includes/vendor/autoload.php');
-require(__DIR__ . '/../tamuhack_includes/vendor/yiisoft/yii2/Yii.php');
+#require(__DIR__ . '/../tamuhack_includes/vendor/autoload.php');
+#require(__DIR__ . '/../tamuhack_includes/vendor/yiisoft/yii2/Yii.php');
 
 $config = require(__DIR__ . '/../tamuhack_includes/config/web.php');
 
