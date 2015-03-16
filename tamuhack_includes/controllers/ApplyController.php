@@ -7,7 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
-class SiteController extends Controller
+class ApplyController extends Controller
 {
     public function behaviors()
     {
@@ -31,4 +31,5 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
 }

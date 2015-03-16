@@ -1,4 +1,5 @@
 <?php
+	use yii\helpers\Url;
 	$this->title = 'TAMUHack';
 ?>
 
@@ -181,7 +182,7 @@
 		</section>
 		<!-- Features end -->
 
-		<!-- Video start -->
+		<!-- Sponsors start -->
 		<section class="module bg-dark-60" data-background="assets/images/2014-sponsors.jpg">
 			<div class="container">
 
@@ -205,7 +206,7 @@
 
 			</div>
 		</section>
-		<!-- Video end -->
+		<!-- Sponsors end -->
 
 		<!-- Portfolio start -->
 		<section id="works" class="module pb-0">
@@ -436,53 +437,24 @@
 		<!-- Team end -->
 
 
-		<!-- Subscribe start -->
-		<section class="module-small bg-dark">
+		<!-- apply start -->
+		<section class="module bg-dark-60" data-background="assets/images/footer-apply.jpg">
 			<div class="container">
 
 				<div class="row">
 
-					<div class="col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+					<div class="col-sm-12">
 
-						<div class="callout-text font-alt">
-							<h3 class="callout-title">apply now</h3>
-							we will update you through email and facebook
-						</div>
-
-					</div>
-
-					<div class="col-sm-6 col-md-6 col-lg-4">
-
-						<div class="callout-btn-box">
-
-							<form id="contact-form" role="form" novalidate="">
-
-								<div class="form-group">
-									<label class="sr-only" for="cname">Name</label>
-									<input type="text" id="cname" class="form-control" name="cname" placeholder="Name*" required="" data-validation-required-message="Please enter your name.">
-									<p class="help-block text-danger"></p>
-								</div>
-	
-								<div class="form-group">
-									<label class="sr-only" for="cemail">Your Email</label>
-									<input type="email" id="cemail" name="cemail" class="form-control" placeholder="Your E-mail*" required="" data-validation-required-message="Please enter your email address.">
-									<p class="help-block text-danger"></p>
-								</div>
-	
-								<div class="form-group">
-									<textarea class="form-control" id="cmessage" name="cmessage" rows="7" placeholder="Message*" required="" data-validation-required-message="Please enter your message."></textarea>
-									<p class="help-block text-danger"></p>
-								</div>
-	
-								<div class="text-center">
-									<button type="submit" class="btn btn-block btn-round btn-g">Submit</button>
-								</div>
-
-							</form>
-
-							<!-- Ajax response -->
-							<div id="subscription-response" class="ajax-response"></div>
-
+						<div class="video-box">
+							
+							<div class="hs-title-size-1 font-alt mb-30">
+								october 9th & 10th
+							</div>
+							<div class="hs-title-size-4 font-alt mb-40">
+								apply now
+							</div>
+							<br>
+							<a href="<?= Url::to('apply'); ?>" class="btn btn-border-w btn-round">sign up here</a>
 						</div>
 
 					</div>
@@ -491,5 +463,6 @@
 
 			</div>
 		</section>
-		<!-- Subscribe end -->
+		<!-- apply end -->
+		
 	

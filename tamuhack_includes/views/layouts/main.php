@@ -109,7 +109,7 @@ AppAsset::register($this);
 				<div class="row">
 	
 					<div class="col-sm-6">
-						<p class="copyright font-alt">© 2015 <a href="index.html">Rival</a>, All Rights Reserved.</p>
+						<p class="copyright font-alt">© 2015 <a href="<?= Url::to('/'); ?>">TAMUHACK</a>, All Rights Reserved.</p>
 					</div>
 	
 					<div class="col-sm-6">

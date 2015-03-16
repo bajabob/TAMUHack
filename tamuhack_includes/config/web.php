@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Applicant;
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -15,7 +16,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Applicant',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -38,6 +39,20 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+    	'urlManager' => [
+    		'class' => 'yii\web\UrlManager',
+    	
+    		// Disable index.php
+    		'showScriptName' => false,
+    	
+    		// Disable r= routes
+    		'enablePrettyUrl' => true,
+    		'rules' => array (
+    			'<controller:\w+>/<id:\d+>' => '<controller>/view',
+    			'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+    			'<controller:\w+>/<action:\w+>' => '<controller>/<action>'
+    		)
+    	]
     ],
     'params' => $params,
 ];
